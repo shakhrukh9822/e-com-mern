@@ -7,10 +7,7 @@ const connectionToDb = () => {
       console.log(
         `DB connection is successfully established: ${response.connection.host}`
       )
-    )
-    .catch((err) => {
-      console.log(err);
-    });
+    );
 };
 
 module.exports = connectionToDb;
