@@ -3,7 +3,7 @@
 # dependencies
 .env
 node_modules
-/config.env
+backend/config/config.env
 /.pnp
 .pnp.js
 
