@@ -5,6 +5,8 @@ const ApiFeatures = require("../utils/apifeatures");
 
 // Creating Poduct = Access For Admin =======
 exports.createProduct = catchAsyncError(async (req, res) => {
+  req.body.user = req.user.id;
+
   const product = await Product.create(req.body);
 
   res.status(201).json({
@@ -13,7 +15,6 @@ exports.createProduct = catchAsyncError(async (req, res) => {
   });
 });
 // ==========================================
-
 // Get All Product===========================
 exports.getAllProducts = catchAsyncError(async (req, res, next) => {
   const resultPerPage = 5;
@@ -28,7 +29,6 @@ exports.getAllProducts = catchAsyncError(async (req, res, next) => {
   res.status(200).json({ success: true, products, productCount });
 });
 // ==========================================
-
 // Get a Product=============================
 exports.getProduct = catchAsyncError(async (req, res, next) => {
   const product = await Product.findById(req.params.id);
@@ -37,9 +37,7 @@ exports.getProduct = catchAsyncError(async (req, res, next) => {
 
   res.status(200).json({ success: true, product });
 });
-
 // ==========================================
-
 // Update Product = Access For Admin ========
 exports.updateProduct = catchAsyncError(async (req, res, next) => {
   let product = await Product.findById(req.params.id);
@@ -58,7 +56,6 @@ exports.updateProduct = catchAsyncError(async (req, res, next) => {
   });
 });
 // ==========================================
-
 // Delete Product = Access For Admin ========
 exports.deleteProduct = catchAsyncError(async (req, res, next) => {
   const product = await Product.findById(req.params.id);
