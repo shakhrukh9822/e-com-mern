@@ -29,6 +29,34 @@ const productSchema = new mongoose.Schema(
       required: [true, "Please Enter Product Category"],
       trim: true,
     },
+    shippingCompany: {
+      type: String,
+      required: [true, "Please Enter Shipping Company"],
+      maxLength: [50, "Product Model cannot exceed 8 characters"],
+    },
+    productModel: {
+      type: String,
+      required: [true, "Please Enter product model"],
+      maxLength: [20, "Product Model cannot exceed 8 characters"],
+    },
+    brand: {
+      type: String,
+      required: [true, "Please Enter product brand"],
+      maxLength: [20, "Price cannot exceed 8 characters"],
+    },
+    discauntPrecent: {
+      type: Number,
+      maxLength: [100, "Brand cannot be more than 100%"],
+      default: 0,
+    },
+    hasDiscaunt: {
+      type: Boolean,
+      default: false,
+    },
+    isNew: {
+      type: Boolean,
+      default: true,
+    },
     stock: {
       type: Number,
       required: [true, "Please Enter Product Stock"],

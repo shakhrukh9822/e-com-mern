@@ -6,7 +6,7 @@ import { Footer } from "./Footer";
 
 const Layout = ({ children }) => {
   return (
-    <div>
+    <div className="min-h-[100vh] flex flex-col ">
       <Header />
       {children}
       <Footer />

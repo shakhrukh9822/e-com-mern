@@ -6,12 +6,20 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { QueryClient } from "services/QueryClient";
 import { HelmetProvider } from "react-helmet-async";
+import { AnimatePresence } from "framer-motion";
 
 // components
 import App from "./App";
 
 // Global Store
 import { store } from "store";
+
+// Import Swiper styles
+import "./index.css";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import 'tippy.js/dist/tippy.css';
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -21,7 +29,9 @@ root.render(
         <HelmetProvider>
           <Provider store={store}>
             <ToastContainer position="bottom-center" limit={1} />
-            <App />
+            <AnimatePresence>
+              <App />
+            </AnimatePresence>
           </Provider>
         </HelmetProvider>
       </QueryClient>
