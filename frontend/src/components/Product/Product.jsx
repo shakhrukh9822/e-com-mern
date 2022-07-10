@@ -25,9 +25,15 @@ const Product = ({ product }) => {
   const brand = get(product, "brand", "Brand");
   const numOfReviews = get(product, "numOfReviews", 0);
   const hasDiscaunt = get(product, "hasDiscaunt", false);
+  const producName = get(product, "name", "Product Name");
   const discauntPrecent = get(product, "discauntPrecent", 0);
   const productModel = get(product, "productModel", "Product Model");
   const shippingCompany = get(product, "shippingCompany", "E-com Delivery");
+  const productBanner = get(product, "images[0].url", placeHolderProductimg);
+
+  const productCheckedValueBanner = productBanner
+    ? productBanner
+    : placeHolderProductimg;
 
   return (
     <div
@@ -38,16 +44,13 @@ const Product = ({ product }) => {
       }}
     >
       <CardBadges isNew={isNew} discauntPrecent={discauntPrecent} />
-      <CardProductBanner
-        image={get(product, "images[0].url", placeHolderProductimg)}
-        name={get(product, "name", "Product Name")}
-      />
+      <CardProductBanner image={productCheckedValueBanner} name={producName} />
       <div className="p-3">
         <Link
           className="product-card-text-ellips font-semibold text-[22px] text-textColor hover:text-gray-800 hover:underline h-[53px]"
           to={id}
         >
-          {product.name}
+          {producName}
         </Link>
         <div className="flex items-center justify-between mb-1">
           <CardPrices

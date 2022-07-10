@@ -32,7 +32,7 @@ const productSchema = new mongoose.Schema(
     shippingCompany: {
       type: String,
       required: [true, "Please Enter Shipping Company"],
-      maxLength: [50, "Product Model cannot exceed 8 characters"],
+      maxLength: [50, "Product Model cannot exceed 50 characters"],
     },
     productModel: {
       type: String,

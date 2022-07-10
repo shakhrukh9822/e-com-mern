@@ -8,18 +8,22 @@ import { QueryClient } from "services/QueryClient";
 import { HelmetProvider } from "react-helmet-async";
 import { AnimatePresence } from "framer-motion";
 
-// components
-import App from "./App";
-
 // Global Store
 import { store } from "store";
+import { productsApiSlice } from "store/slices/products/products";
+
+// components
+import App from "./App";
 
 // Import Swiper styles
 import "./index.css";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import 'tippy.js/dist/tippy.css';
+import "tippy.js/dist/tippy.css";
+
+// triggering request of getting all products
+store.dispatch(productsApiSlice.endpoints.getProducts.initiate());
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
