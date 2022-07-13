@@ -24,10 +24,13 @@ export const productsApiSlice = createApi({
         return productAdapter.setAll(initialState, products);
       },
     }),
+    getProductDetail: builder.query({
+      query: (id) => `/api/v1/product/${id}`,
+    }),
   }),
 });
 
-export const { useGetProductsQuery } = productsApiSlice;
+export const { useGetProductsQuery ,useGetProductDetailQuery} = productsApiSlice;
 
 // return the query response object
 export const selectProductResults =
@@ -39,6 +42,7 @@ const selectProductsData = createSelector(
   (productResult) => productResult?.data // normalized state object with ids & entities
 );
 
-export const { selectAll: selectAllProducts } = productAdapter.getSelectors(
-  (state) => selectProductsData(state) ?? initialState
-);
+export const { selectAll: selectAllProducts, selectById: selectProductById } =
+  productAdapter.getSelectors(
+    (state) => selectProductsData(state) ?? initialState
+  );

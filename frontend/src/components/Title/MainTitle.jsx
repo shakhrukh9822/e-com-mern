@@ -4,8 +4,7 @@ import { PropTypes } from "prop-types";
 const MainTitle = ({ title, extraClasses }) => {
   return (
     <div
-      className={`
-      mainTitle 
+      className={` 
       w-max
       mt-3
       text-[1.8rem] 

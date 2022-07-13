@@ -22,6 +22,8 @@ const productSchema = new mongoose.Schema(
       {
         public_id: { type: String, required: true },
         url: { type: String, required: true },
+        original: { type: String, required: true },
+        thumbnail: { type: String, required: true },
       },
     ],
     category: {
@@ -53,7 +55,7 @@ const productSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
-    isNew: {
+    isNewProduct: {
       type: Boolean,
       default: true,
     },
@@ -69,7 +71,12 @@ const productSchema = new mongoose.Schema(
         user: { type: mongoose.Schema.ObjectId, ref: "User", required: true },
         name: { type: String, required: true },
         rating: { type: Number, required: true },
-        comment: { type: String, required: true, trim: true },
+        comment: {
+          type: String,
+          required: true,
+          minlength: 4,
+          maxlength: 200,
+        },
       },
     ],
     user: { type: mongoose.Schema.ObjectId, ref: "User", required: true },

@@ -9,8 +9,8 @@ import {
 // components
 import { Product } from "components/Product";
 import { MainTitle } from "components/Title";
+import { ApiError } from "components/ApiError";
 import { Container } from "components/Container";
-import { DataError } from "components/DataError";
 import { ProductCardSkeleton } from "components/Skeletons";
 
 const FeaturedProducts = () => {
@@ -21,26 +21,25 @@ const FeaturedProducts = () => {
   return (
     <Container>
       <MainTitle title={"featured products"} extraClasses="mx-auto mb-5" />
-      <ul
-        className="mb-10"
-        style={{
-          display: "grid",
-          gap: "20px",
-          gridTemplateColumns: "repeat(auto-fill, minmax(290px, 1fr))",
-        }}
-      >
-        {isError ? (
-          <DataError message={error} />
-        ) : isLoading ? (
-          Array(4)
-            .fill(4)
-            .map((_, index) => <ProductCardSkeleton key={index} />)
-        ) : (
-          products?.map((product, productIndex) => (
-            <Product product={product} key={productIndex} />
-          ))
-        )}
-      </ul>
+
+      <ApiError error={error} isError={isError}>
+        <ul
+          className="mb-10"
+          style={{
+            display: "grid",
+            gap: "20px",
+            gridTemplateColumns: "repeat(auto-fill, minmax(290px, 1fr))",
+          }}
+        >
+          {isLoading
+            ? Array(4)
+                .fill(4)
+                .map((_, index) => <ProductCardSkeleton key={index} />)
+            : products?.map((product, productIndex) => (
+                <Product product={product} key={productIndex} />
+              ))}
+        </ul>
+      </ApiError>
     </Container>
   );
 };

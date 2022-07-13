@@ -1,1 +1,1 @@
-export { default as ProductCardBadge } from "./ProductCardBadge";
+export { default as Badge } from "./Badge";

@@ -2,14 +2,14 @@ import React from "react";
 import { PropTypes } from "prop-types";
 
 // components
-import { ProductCardBadge } from "components/Badge";
+import { Badge } from "components/Badge";
 
 const CardBadges = ({ isNew, discauntPrecent }) => {
   return (
     <div className="absolute top-2 left-2">
-      {isNew ? <ProductCardBadge title={"New"} /> : null}
+      {isNew ? <Badge extraClass={"mr-2"} title={"New"} /> : null}
       {discauntPrecent ? (
-        <ProductCardBadge title={`-${discauntPrecent} %`} />
+        <Badge extraClass={"mr-2"} title={`-${discauntPrecent} %`} />
       ) : null}
     </div>
   );

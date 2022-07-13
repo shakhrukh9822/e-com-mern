@@ -17,10 +17,10 @@ const NavBar = () => {
       {headerMenus.map((headerMenu, headerMenuIndex) => (
         <li className="mx-0.5" key={headerMenu.id}>
           <Link
-            className={`headerNavLinkFontFamily text-[22px] capitalize hover:text-red-700 ${
+            className={`headerNavLinkFontFamily text-[24px] capitalize hover:text-red-600 ${
               activePageIndex === headerMenuIndex
-                ? "text-red-700"
-                : "text-baseColor"
+                ? "text-red-600"
+                : "text-gray-200"
             }`}
             to={headerMenu.path}
           >

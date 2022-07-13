@@ -20,6 +20,7 @@ import "./index.css";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import "swiper/css/thumbs";
 import "tippy.js/dist/tippy.css";
 
 // triggering request of getting all products

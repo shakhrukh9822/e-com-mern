@@ -20,7 +20,7 @@ import placeHolderProductimg from "assets/images/place-holder-imgs/placeholdere_
 const Product = ({ product }) => {
   const id = get(product, "_id", 0);
   const price = get(product, "price", 0);
-  const isNew = get(product, "isNew", false);
+  const isNew = get(product, "isNewProduct", false);
   const ratings = get(product, "ratings", 0);
   const brand = get(product, "brand", "Brand");
   const numOfReviews = get(product, "numOfReviews", 0);
@@ -48,7 +48,7 @@ const Product = ({ product }) => {
       <div className="p-3">
         <Link
           className="product-card-text-ellips font-semibold text-[22px] text-textColor hover:text-gray-800 hover:underline h-[53px]"
-          to={id}
+          to={`product/${id}`}
         >
           {producName}
         </Link>

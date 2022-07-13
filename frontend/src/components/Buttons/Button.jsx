@@ -1,12 +1,12 @@
 import React from "react";
 import { PropTypes } from "prop-types";
 
-const Button = ({ type, btnTitle, btnHtmlType, onClick }) => {
+const Button = ({ type, btnTitle, btnHtmlType, onClick, extraClass }) => {
   if (type === "dark") {
     return (
       <button
-        className="w-[100%] 
-          py-1.5 
+        className={`w-[100%] 
+          py-2 
           px-5 
           text-[18px] 
           uppercase 
@@ -26,7 +26,9 @@ const Button = ({ type, btnTitle, btnHtmlType, onClick }) => {
         dark:text-gray-400 
         dark:border-gray-600 
         dark:hover:text-white 
-        dark:hover:bg-gray-700"
+        dark:hover:bg-gray-700
+        ${extraClass}
+        `}
         type={btnHtmlType}
         onClick={onClick ? () => onClick() : null}
       >
@@ -42,6 +44,7 @@ Button.propTypes = {
   btnTitle: PropTypes.string,
   btnHtmlType: PropTypes.string,
   onClick: PropTypes.func,
+  extraClass: PropTypes.string,
 };
 
 Button.defaultProps = {
@@ -49,6 +52,7 @@ Button.defaultProps = {
   btnTitle: "btn",
   btnHtmlType: "button",
   onClick: () => console.log("pressed me"),
+  extraClass: "",
 };
 
 export default Button;

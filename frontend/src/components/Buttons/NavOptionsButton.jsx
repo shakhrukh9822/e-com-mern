@@ -6,7 +6,7 @@ const NavOptionsButton = ({ children, onClick }) => {
   return (
     <motion.button
       whileTap={{ scale: 0.95 }}
-      className="mx-2 hover:text-red-700"
+      className="ml-3 hover:text-red-600 text-white"
       type="button"
       onClick={onClick ? () => onClick() : null}
     >

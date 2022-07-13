@@ -8,7 +8,7 @@ const Layout = ({ children }) => {
   return (
     <div className="min-h-[100vh] flex flex-col ">
       <Header />
-      {children}
+      <main className="pt-[70px]">{children}</main>
       <Footer />
     </div>
   );

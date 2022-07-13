@@ -1,20 +1,13 @@
 import React from "react";
-import ReactStars from "react-rating-stars-component";
+
 import { PropTypes } from "prop-types";
+import { Stars } from "components/Stars";
 
 const CardProductRating = ({ onChange, rating, numOfReviews }) => {
   return (
     <div>
       <div className="h-[23px] overflow-hidden flex items-center">
-        <ReactStars
-          onChange={onChange ? onChange : null}
-          size={24}
-          isHalf={true}
-          activeColor="#1a1a1a"
-          color="#00000040"
-          value={rating}
-          edit={false}
-        />
+        <Stars rating={rating} />
       </div>
       <div className="flex justify-between line-height-1 text-[18px]">
         <span>Review{numOfReviews > 1 ? "s" : null} </span>
