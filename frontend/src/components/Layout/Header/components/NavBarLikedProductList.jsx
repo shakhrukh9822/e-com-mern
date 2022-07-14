@@ -7,7 +7,7 @@ import { BsHeart } from "react-icons/bs";
 
 const NavBarLikedProductList = () => {
   return (
-    <NavOptionsButton>
+    <NavOptionsButton link="liked-products">
       <BsHeart size={22} />
     </NavOptionsButton>
   );

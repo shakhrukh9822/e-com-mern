@@ -20,9 +20,10 @@ import placeHolderProductimg from "assets/images/place-holder-imgs/placeholdere_
 const Product = ({ product }) => {
   const id = get(product, "_id", 0);
   const price = get(product, "price", 0);
-  const isNew = get(product, "isNewProduct", false);
   const ratings = get(product, "ratings", 0);
   const brand = get(product, "brand", "Brand");
+  const isLiked = get(product, "isLiked", false);
+  const isNew = get(product, "isNewProduct", false);
   const numOfReviews = get(product, "numOfReviews", 0);
   const hasDiscaunt = get(product, "hasDiscaunt", false);
   const producName = get(product, "name", "Product Name");
@@ -59,8 +60,8 @@ const Product = ({ product }) => {
             discauntPrecent={discauntPrecent}
           />
           <div className="flex items-center">
-            <CardDetailsButton link={id} />
-            <CardHeartIcon />
+            <CardDetailsButton link={id} product={product} />
+            <CardHeartIcon isLiked={isLiked} product={product} id={id} />
             <CardCompareButton />
           </div>
         </div>

@@ -7,7 +7,7 @@ import { CgSearch } from "react-icons/cg";
 
 const NavBarSearchButton = () => {
   return (
-    <NavOptionsButton>
+    <NavOptionsButton link="search">
       <CgSearch size={24} />
     </NavOptionsButton>
   );

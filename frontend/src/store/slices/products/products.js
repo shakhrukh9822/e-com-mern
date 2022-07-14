@@ -11,26 +11,41 @@ const initialState = productAdapter.getInitialState({
 
 export const productsApiSlice = createApi({
   reducerPath: "products_api",
+  tagTypes: ["Products"],
   baseQuery: fetchBaseQuery({
     baseUrl: process.env.BASE_URL,
   }),
-  tagTypes: ["Products"],
   endpoints: (builder) => ({
     getProducts: builder.query({
       query: () => "/api/v1/products",
       transformResponse: (response) => {
         const { products, productCount } = response;
+
         initialState.productCount = productCount;
+
         return productAdapter.setAll(initialState, products);
       },
+      providesTags: ["Products"],
     }),
     getProductDetail: builder.query({
       query: (id) => `/api/v1/product/${id}`,
     }),
+    addToFavourite: builder.mutation({
+      query: (id) => ({
+        url: `/api/v1/add-to-favourites/${id}`,
+        method: "POST",
+        body: id,
+      }),
+      invalidatesTags: ["Products"],
+    }),
   }),
 });
 
-export const { useGetProductsQuery ,useGetProductDetailQuery} = productsApiSlice;
+export const {
+  useGetProductsQuery,
+  useGetProductDetailQuery,
+  useAddToFavouriteMutation,
+} = productsApiSlice;
 
 // return the query response object
 export const selectProductResults =

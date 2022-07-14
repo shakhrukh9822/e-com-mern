@@ -1,19 +1,27 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { PropTypes } from "prop-types";
 
 // component
 import CardOptionsButton from "./CardOptionsButton";
 
 // icons
-import { BsEye } from "react-icons/bs";
+import { BsEye, BsEyeFill } from "react-icons/bs";
+import { useActions } from "hooks/actionHooks/useActions";
 
-const CardDetailsButton = ({ link }) => {
+const CardDetailsButton = ({ link, product }) => {
+  const { addViewedProduct } = useActions();
+  console.log(product?.viewLater);
+
   return (
     <CardOptionsButton title={"Show More"}>
-      <Link to={`/product/${link}`}>
-        <BsEye size={22} />
-      </Link>
+      {product?.viewLater ? (
+        <BsEyeFill />
+      ) : (
+        <BsEye
+          size={22}
+          onClick={() => addViewedProduct({ ...product, viewLater: true })}
+        />
+      )}
     </CardOptionsButton>
   );
 };

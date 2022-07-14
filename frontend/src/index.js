@@ -1,15 +1,16 @@
 import React from "react";
 import { Provider } from "react-redux";
 import ReactDOM from "react-dom/client";
+import { AnimatePresence } from "framer-motion";
 import { ToastContainer } from "react-toastify";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { QueryClient } from "services/QueryClient";
 import { HelmetProvider } from "react-helmet-async";
-import { AnimatePresence } from "framer-motion";
+import { PersistGate } from "redux-persist/integration/react";
 
 // Global Store
-import { store } from "store";
+import store, { persistor } from "store";
 import { productsApiSlice } from "store/slices/products/products";
 
 // components
@@ -22,7 +23,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
 import "tippy.js/dist/tippy.css";
-
+import "react-toastify/dist/ReactToastify.css";
 // triggering request of getting all products
 store.dispatch(productsApiSlice.endpoints.getProducts.initiate());
 
@@ -35,7 +36,9 @@ root.render(
           <Provider store={store}>
             <ToastContainer position="bottom-center" limit={1} />
             <AnimatePresence>
-              <App />
+              <PersistGate persistor={persistor} loading={null}>
+                <App />
+              </PersistGate>
             </AnimatePresence>
           </Provider>
         </HelmetProvider>

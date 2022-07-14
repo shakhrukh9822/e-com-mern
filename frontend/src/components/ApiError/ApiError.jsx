@@ -13,7 +13,6 @@ const ApiError = ({ isError, error, children }) => {
 ApiError.propTypes = {
   isError: PropTypes.bool,
   error: PropTypes.object,
-  children: PropTypes.object,
 };
 
 export default ApiError;

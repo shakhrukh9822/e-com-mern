@@ -18,6 +18,15 @@ const FeaturedProducts = () => {
 
   const products = useSelector(selectAllProducts);
 
+  const transformedProducts = products.map((product) => {
+    return {
+      ...product,
+      viewLater: false,
+    };
+  });
+
+  console.log(transformedProducts);
+
   return (
     <Container>
       <MainTitle title={"featured products"} extraClasses="mx-auto mb-5" />
@@ -35,7 +44,7 @@ const FeaturedProducts = () => {
             ? Array(4)
                 .fill(4)
                 .map((_, index) => <ProductCardSkeleton key={index} />)
-            : products?.map((product, productIndex) => (
+            : transformedProducts?.map((product, productIndex) => (
                 <Product product={product} key={productIndex} />
               ))}
         </ul>

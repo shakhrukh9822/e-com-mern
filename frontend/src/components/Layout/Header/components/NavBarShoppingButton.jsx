@@ -7,7 +7,7 @@ import { GiShoppingCart } from "react-icons/gi";
 
 const NavBarShoppingButton = () => {
   return (
-    <NavOptionsButton>
+    <NavOptionsButton link="shopping-cart">
       <GiShoppingCart size={24} />
     </NavOptionsButton>
   );

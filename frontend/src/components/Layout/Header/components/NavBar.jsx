@@ -13,7 +13,7 @@ const NavBar = () => {
   );
 
   return (
-    <div className="md:flex px-2 hidden items-end">
+    <div className="md:flex px-4 hidden items-end">
       {headerMenus.map((headerMenu, headerMenuIndex) => (
         <li className="mx-0.5" key={headerMenu.id}>
           <Link

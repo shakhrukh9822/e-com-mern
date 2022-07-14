@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 // component
 import CardOptionsButton from "./CardOptionsButton";
@@ -6,20 +6,10 @@ import CardOptionsButton from "./CardOptionsButton";
 // icons
 import { BsHeart, BsFillHeartFill } from "react-icons/bs";
 
-const CardHeartIcon = () => {
-  const [isActive, setIsActive] = useState(false);
-
-  const addToLikedList = () => {
-    setIsActive(!isActive);
-  };
-
+const CardHeartIcon = ({ isLiked }) => {
   return (
-    <CardOptionsButton
-      title={"Wish List"}
-      onClick={addToLikedList}
-      extraClasses={"mx-1"}
-    >
-      {isActive ? <BsFillHeartFill size={22} /> : <BsHeart size={22} />}
+    <CardOptionsButton title={"Like"} extraClasses={"mx-1"}>
+      {isLiked ? <BsFillHeartFill size={22} /> : <BsHeart size={22} />}
     </CardOptionsButton>
   );
 };

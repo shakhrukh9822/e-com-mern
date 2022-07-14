@@ -1,28 +1,36 @@
 import React from "react";
-import { motion } from "framer-motion";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
-const NavOptionsButton = ({ children, onClick }) => {
+const NavOptionsButton = ({ children, link, hasBadge, badgeNumber }) => {
   return (
-    <motion.button
-      whileTap={{ scale: 0.95 }}
-      className="ml-3 hover:text-red-600 text-white"
+    <Link
+      to={link}
+      className="ml-3 hover:text-red-600 text-white relative"
       type="button"
-      onClick={onClick ? () => onClick() : null}
     >
       {children}
-    </motion.button>
+      {hasBadge ? (
+        <span className="absolute -top-3 -right-1 w-[18px] h-[18px] bg-white text-black flex items-center justify-center rounded-full">
+          {badgeNumber}
+        </span>
+      ) : null}
+    </Link>
   );
 };
 
 NavOptionsButton.propTypes = {
   children: PropTypes.object,
-  onClick: PropTypes.func,
+  link: PropTypes.string,
+  badgeNumber: PropTypes.number,
+  hasBadge: PropTypes.bool,
 };
 
 NavOptionsButton.defaultProps = {
   children: {},
-  onClick: () => console.log("Nav Options Button"),
+  link: "/",
+  badgeNumber: 0,
+  hasBadge: false,
 };
 
 export default NavOptionsButton;

@@ -7,7 +7,7 @@ import { AiOutlineUser } from "react-icons/ai";
 
 const NavBarUserAccountButton = () => {
   return (
-    <NavOptionsButton>
+    <NavOptionsButton link="user-account">
       <AiOutlineUser size={24} />
     </NavOptionsButton>
   );
