@@ -16,19 +16,21 @@ import { ProductDetails } from "pages/ProductDetails";
 import { Search } from "pages/Search";
 import { ShoppingCart } from "pages/ShoppingCart";
 import { UserAccont } from "pages/UserAccont";
+import { Compare } from "pages/Compare";
 
 // routes array #######################
 const route = [
   { path: "/", element: <Home /> },
   { path: "/about", element: <About /> },
+  { path: "/viewed", element: <Viewed /> },
+  { path: "/search", element: <Search /> },
+  { path: "/compare", element: <Compare /> },
   { path: "/contact", element: <Contact /> },
   { path: "/products", element: <Products /> },
-  { path: "/product/:id", element: <ProductDetails /> },
-  { path: "/viewed", element: <Viewed /> },
-  { path: "/liked-products", element: <LikedProducts /> },
-  { path: "/search", element: <Search /> },
-  { path: "/shopping-cart", element: <ShoppingCart /> },
   { path: "/user-account", element: <UserAccont /> },
+  { path: "/shopping-cart", element: <ShoppingCart /> },
+  { path: "/product/:id", element: <ProductDetails /> },
+  { path: "/liked-products", element: <LikedProducts /> },
 ];
 
 const Router = () => {

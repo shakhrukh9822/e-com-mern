@@ -6,12 +6,12 @@ const NavOptionsButton = ({ children, link, hasBadge, badgeNumber }) => {
   return (
     <Link
       to={link}
-      className="ml-3 hover:text-red-600 text-white relative"
+      className="ml-3 hover:text-red-600 text-white relative headerNavBadge"
       type="button"
     >
       {children}
       {hasBadge ? (
-        <span className="absolute -top-3 -right-1 w-[18px] h-[18px] bg-white text-black flex items-center justify-center rounded-full">
+        <span className="absolute -top-3 -right-1 w-[18px] h-[18px] bg-white text-black flex items-center justify-center rounded-full border-[1px]">
           {badgeNumber}
         </span>
       ) : null}

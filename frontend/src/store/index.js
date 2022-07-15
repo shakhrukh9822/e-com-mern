@@ -14,11 +14,12 @@ import rootReducer from "./rootReducer";
 
 // reducers
 import { productsApiSlice } from "./slices/products/products";
+import { categoryApiSlice } from "./slices/categories/categories";
 
 const persistConfig = {
   key: "root",
   storage,
-  blacklist:[productsApiSlice.reducerPath]
+  blacklist: [productsApiSlice.reducerPath, categoryApiSlice.reducerPath],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -32,7 +33,7 @@ const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(productsApiSlice.middleware),
+    }).concat(productsApiSlice.middleware, categoryApiSlice.middleware),
 });
 
 export const persistor = persistStore(store);

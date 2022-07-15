@@ -11,6 +11,7 @@ const viewedProductsSlice = createSlice({
   initialState,
   reducers: {
     addViewedProduct: viewedProductsAdapter.addOne,
+    deleteViewedProduct: viewedProductsAdapter.removeOne,
   },
 });
 

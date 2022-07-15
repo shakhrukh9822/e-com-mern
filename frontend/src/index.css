@@ -88,6 +88,11 @@ button {
   height: 100% !important;
 }
 
+.headerNavBadge:hover span {
+  border-color: #b91c1c;
+  color: #b91c1c;
+}
+
 ::selection {
   background-color: transparent;
 }

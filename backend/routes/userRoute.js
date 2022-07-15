@@ -12,6 +12,12 @@ const {
   getUserDetails,
   updateUserRole,
   deleteUser,
+  addToUserViewedLaterList,
+  getUserViewedLaterList,
+  deleteProductFromViewedLaterList,
+  addToFavouriteList,
+  getUserFavouriteProductsList,
+  deleteProductFromFavouriteList,
 } = require("../controllers/userController");
 
 const { isAuthentificatedUser, authorizeRole } = require("../middleware/auth");
@@ -26,6 +32,21 @@ router.route("/password/reset/:token").put(resetPassword);
 router.route("/password/update").put(isAuthentificatedUser, updatePassword);
 router.route("/me").get(isAuthentificatedUser, getMyDetails);
 router.route("/me/update").put(isAuthentificatedUser, updateProfile);
+router
+  .route("/view-later-list")
+  .get(isAuthentificatedUser, getUserViewedLaterList);
+router
+  .route("/view-later-list/:id")
+  .post(isAuthentificatedUser, addToUserViewedLaterList)
+  .delete(isAuthentificatedUser, deleteProductFromViewedLaterList);
+
+router
+  .route("/favourite")
+  .get(isAuthentificatedUser, getUserFavouriteProductsList);
+router
+  .route("/favourite/:id")
+  .post(isAuthentificatedUser, addToFavouriteList)
+  .delete(isAuthentificatedUser, deleteProductFromFavouriteList);
 
 // Admin routes==========================
 router

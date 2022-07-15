@@ -1,4 +1,5 @@
 const User = require("../models/userModel");
+const Product = require("../models/porductModel");
 const ErrorHandler = require("../utils/errorHandler");
 const catchAsyncError = require("../middleware/catchAsynErrors");
 const sendToken = require("../utils/jwtToken");
@@ -225,3 +226,159 @@ exports.deleteUser = catchAsyncError(async (req, res, next) => {
   res.status(200).json({ success: true, message: "User deleted successfully" });
 });
 // ==========================================
+// User Viewed List==========================
+exports.addToUserViewedLaterList = catchAsyncError(async (req, res, next) => {
+  const user = await User.findById(req.user.id);
+  const product = await Product.findById(req.params.id);
+
+  if (!user)
+    return next(
+      new ErrorHandler(`User Does Not Exist with id ${req.user.id}`),
+      400
+    );
+
+  if (!product)
+    return next(
+      new ErrorHandler(`Product Does Not Exist with id ${req.params.id}`),
+      400
+    );
+
+  const existedProductInViewLaterList = user.userViewedLaterList.find(
+    (userVieweLaterproduct) =>
+      String(userVieweLaterproduct._id) === String(product._id)
+  );
+
+  if (existedProductInViewLaterList) {
+    res.status(208).json({ message: "Product already exists" });
+    return;
+  }
+
+  user.userViewedLaterList.push(product);
+  user.save();
+
+  res
+    .status(200)
+    .json({ success: true, message: "Product Added To See Later List" });
+});
+// ==========================================
+// Get User Viewed-Later List================
+exports.getUserViewedLaterList = catchAsyncError(async (req, res, next) => {
+  const user = await User.findById(req.user.id);
+
+  if (!user)
+    return next(new ErrorHandler(`User Does Not Authentificated`), 400);
+
+  const userViewedLaterList = user.userViewedLaterList;
+
+  res.status(200).json({ success: true, userViewedLaterList });
+});
+// ==========================================
+// Delete Viewed Later Product===============
+exports.deleteProductFromViewedLaterList = catchAsyncError(
+  async (req, res, next) => {
+    const user = await User.findById(req.user.id);
+    const product = await Product.findById(req.params.id);
+
+    if (!user)
+      return next(
+        new ErrorHandler(`User Does Not Exist with id ${req.user.id}`),
+        400
+      );
+
+    if (!product)
+      return next(
+        new ErrorHandler(`Product Does Not Exist with id ${req.params.id}`),
+        400
+      );
+
+    user.userViewedLaterList = user.userViewedLaterList.filter(
+      (userVieweLaterproduct) =>
+        String(userVieweLaterproduct._id) !== String(product._id)
+    );
+    user.save();
+
+    res
+      .status(200)
+      .json({ success: true, message: "Product removed from See Later List" });
+  }
+);
+// ==========================================
+// Add to Favourite List==========================
+exports.addToFavouriteList = catchAsyncError(async (req, res, next) => {
+  const user = await User.findById(req.user.id);
+  const product = await Product.findById(req.params.id);
+
+  if (!user)
+    return next(
+      new ErrorHandler(`User Does Not Exist with id ${req.user.id}`),
+      400
+    );
+
+  if (!product)
+    return next(
+      new ErrorHandler(`Product Does Not Exist with id ${req.params.id}`),
+      400
+    );
+
+  const existedProductFavouriteList = user.userFavouriteProductsList.find(
+    (userFavouriteProduct) =>
+      String(userFavouriteProduct._id) === String(product._id)
+  );
+
+  if (existedProductFavouriteList) {
+    res.status(208).json({ message: "Product already exists in Favourites" });
+    return;
+  }
+
+  user.userFavouriteProductsList.push(product);
+  user.save();
+
+  res
+    .status(200)
+    .json({ success: true, message: "Product Added To Favourites" });
+});
+// ==========================================
+// Get User Favourite List===================
+exports.getUserFavouriteProductsList = catchAsyncError(
+  async (req, res, next) => {
+    const user = await User.findById(req.user.id);
+
+    if (!user)
+      return next(new ErrorHandler(`User Does Not Authentificated`), 400);
+
+    const userFavouriteProductsList = user.userFavouriteProductsList;
+
+    res.status(200).json({ success: true, userFavouriteProductsList });
+  }
+);
+// ==========================================
+// Delete Favourite Product==================
+exports.deleteProductFromFavouriteList = catchAsyncError(
+  async (req, res, next) => {
+    const user = await User.findById(req.user.id);
+    const product = await Product.findById(req.params.id);
+
+    if (!user)
+      return next(
+        new ErrorHandler(`User Does Not Exist with id ${req.user.id}`),
+        400
+      );
+
+    if (!product)
+      return next(
+        new ErrorHandler(`Product Does Not Exist with id ${req.params.id}`),
+        400
+      );
+
+    user.userFavouriteProductsList = user.userFavouriteProductsList.filter(
+      (userFavouriteProduct) =>
+        String(userFavouriteProduct._id) !== String(product._id)
+    );
+    user.save();
+
+    res.status(200).json({
+      success: true,
+      message: "Favourite Product deleted successfully",
+    });
+  }
+);

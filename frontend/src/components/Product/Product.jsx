@@ -9,7 +9,7 @@ import CardPrices from "./components/CardPrices";
 import CardProductRating from "./components/CardProductRating";
 import Button from "components/Buttons/Button";
 import CardHeartIcon from "./components/CardHeartIcon";
-import CardDetailsButton from "./components/CardDetailsButton";
+import CardSeeLaterButton from "./components/CardSeeLaterButton";
 import CardProductModel from "./components/CardProductModel";
 import CardProductBanner from "./components/CardProductBanner";
 import CardCompareButton from "./components/CardCompareButton";
@@ -22,7 +22,6 @@ const Product = ({ product }) => {
   const price = get(product, "price", 0);
   const ratings = get(product, "ratings", 0);
   const brand = get(product, "brand", "Brand");
-  const isLiked = get(product, "isLiked", false);
   const isNew = get(product, "isNewProduct", false);
   const numOfReviews = get(product, "numOfReviews", 0);
   const hasDiscaunt = get(product, "hasDiscaunt", false);
@@ -60,9 +59,9 @@ const Product = ({ product }) => {
             discauntPrecent={discauntPrecent}
           />
           <div className="flex items-center">
-            <CardDetailsButton link={id} product={product} />
-            <CardHeartIcon isLiked={isLiked} product={product} id={id} />
-            <CardCompareButton />
+            <CardSeeLaterButton product={product} />
+            <CardHeartIcon product={product} />
+            <CardCompareButton product={product} />
           </div>
         </div>
         <div className="flex items-center justify-between">

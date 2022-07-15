@@ -22,10 +22,12 @@ const FeaturedProducts = () => {
     return {
       ...product,
       viewLater: false,
+      isLiked: false,
+      isAddedToCompare: false,
     };
   });
 
-  console.log(transformedProducts);
+  // console.log(transformedProducts);
 
   return (
     <Container>

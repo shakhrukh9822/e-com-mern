@@ -3,7 +3,7 @@ import { PropTypes } from "prop-types";
 
 const CardProductModel = ({ productModel, brand }) => {
   return (
-    <div className="flex flex-col text-[18px]">
+    <div className="flex flex-col text-[18px] capitalize">
       <div className="line-height-1 mb-1">
         <span>Brand:</span> <span>{brand}</span>
       </div>

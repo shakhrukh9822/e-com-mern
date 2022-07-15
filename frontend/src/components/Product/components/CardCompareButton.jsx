@@ -1,15 +1,37 @@
+import { useActions } from "hooks/actionHooks/useActions";
+import { get } from "lodash";
 import React from "react";
 
-import { IoMdStats } from "react-icons/io";
+import { IoIosGitCompare } from "react-icons/io";
+import { IoGitCompare } from "react-icons/io5";
+import { useSelector } from "react-redux";
+import { selectAllComparedProducts } from "store/slices/compare_products_slice/compare.products.slice";
 import CardOptionsButton from "./CardOptionsButton";
 
-const CardCompareButton = () => {
+const CardCompareButton = ({ product }) => {
+  const { addCompareProduct, deleteCompareProduct } = useActions();
+  const AllComparedProducts = useSelector(selectAllComparedProducts);
+
+  const addedProductToCompare = AllComparedProducts.find(
+    (comparedProduct) => comparedProduct._id === product._id
+  );
+
   return (
     <CardOptionsButton title={"Compare"}>
-      <IoMdStats size={24} />
+      {get(addedProductToCompare, "isAddedToCompare", false) ? (
+        <IoGitCompare
+          size={24}
+          onClick={() => deleteCompareProduct(product._id)}
+        />
+      ) : (
+        <IoIosGitCompare
+          size={24}
+          onClick={() =>
+            addCompareProduct({ ...product, isAddedToCompare: true })
+          }
+        />
+      )}
     </CardOptionsButton>
-    // <button className="border-[1.5px] border-gray-300">
-    // </button>
   );
 };
 

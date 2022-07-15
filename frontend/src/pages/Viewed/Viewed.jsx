@@ -5,7 +5,7 @@ import { selectAllViewedProducts } from "store/slices/viewed_product_slice/viewe
 const Viewed = () => {
   const AllViewedProducts = useSelector(selectAllViewedProducts);
 
-  console.log(AllViewedProducts.length);
+  console.log(AllViewedProducts);
 
   return <div>Viewed</div>;
 };

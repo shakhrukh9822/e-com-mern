@@ -32,7 +32,100 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: "user",
   },
-
+  userViewedLaterList: [
+    {
+      name: {
+        type: String,
+      },
+      description: {
+        type: String,
+      },
+      price: {
+        type: Number,
+      },
+      ratings: { type: Number, default: 0 },
+      images: [
+        {
+          public_id: { type: String },
+          url: { type: String },
+          original: { type: String },
+          thumbnail: { type: String },
+        },
+      ],
+      category: {
+        type: String,
+      },
+      shippingCompany: {
+        type: String,
+      },
+      productModel: {
+        type: String,
+      },
+      brand: {
+        type: String,
+      },
+      discauntPrecent: {
+        type: Number,
+      },
+      hasDiscaunt: {
+        type: Boolean,
+      },
+      isNewProduct: {
+        type: Boolean,
+      },
+      stock: {
+        type: Number,
+      },
+      numOfReviews: { type: Number, default: 0 },
+    },
+  ],
+  userFavouriteProductsList: [
+    {
+      name: {
+        type: String,
+      },
+      description: {
+        type: String,
+      },
+      price: {
+        type: Number,
+      },
+      ratings: { type: Number, default: 0 },
+      images: [
+        {
+          public_id: { type: String },
+          url: { type: String },
+          original: { type: String },
+          thumbnail: { type: String },
+        },
+      ],
+      category: {
+        type: String,
+      },
+      shippingCompany: {
+        type: String,
+      },
+      productModel: {
+        type: String,
+      },
+      brand: {
+        type: String,
+      },
+      discauntPrecent: {
+        type: Number,
+      },
+      hasDiscaunt: {
+        type: Boolean,
+      },
+      isNewProduct: {
+        type: Boolean,
+      },
+      stock: {
+        type: Number,
+      },
+      numOfReviews: { type: Number, default: 0 },
+    },
+  ],
   resetPasswordToken: String,
   resetPasswordExpire: Date,
 });

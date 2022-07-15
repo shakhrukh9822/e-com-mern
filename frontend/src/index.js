@@ -12,6 +12,7 @@ import { PersistGate } from "redux-persist/integration/react";
 // Global Store
 import store, { persistor } from "store";
 import { productsApiSlice } from "store/slices/products/products";
+import { categoryApiSlice } from "store/slices/categories/categories";
 
 // components
 import App from "./App";
@@ -26,6 +27,7 @@ import "tippy.js/dist/tippy.css";
 import "react-toastify/dist/ReactToastify.css";
 // triggering request of getting all products
 store.dispatch(productsApiSlice.endpoints.getProducts.initiate());
+store.dispatch(categoryApiSlice.endpoints.getCategories.initiate());
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
