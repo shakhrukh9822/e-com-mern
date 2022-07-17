@@ -17,7 +17,23 @@ exports.createProduct = catchAsyncError(async (req, res) => {
 // ==========================================
 // Get All Product===========================
 exports.getAllProducts = catchAsyncError(async (req, res, next) => {
-  const resultPerPage = 5;
+  const resultPerPage = 8;
+  const productCount = await Product.countDocuments();
+
+  const apiFetaures = new ApiFeatures(Product.find(), req.query).pagination(
+    resultPerPage
+  );
+  const products = await apiFetaures.query;
+
+  res
+    .status(200)
+    .json({ success: true, products, productCount, resultPerPage });
+});
+// ==========================================
+
+// Search Product============================
+exports.searchProducts = catchAsyncError(async (req, res, next) => {
+  const resultPerPage = 8;
   const productCount = await Product.countDocuments();
 
   const apiFetaures = new ApiFeatures(Product.find(), req.query)
@@ -26,9 +42,12 @@ exports.getAllProducts = catchAsyncError(async (req, res, next) => {
     .pagination(resultPerPage);
   const products = await apiFetaures.query;
 
-  res.status(200).json({ success: true, products, productCount });
+  res
+    .status(200)
+    .json({ success: true, products, productCount, resultPerPage });
 });
 // ==========================================
+
 // Get a Product=============================
 exports.getProduct = catchAsyncError(async (req, res, next) => {
   const product = await Product.findById(req.params.id);

@@ -1,5 +1,5 @@
 import React from "react";
-import NavBarCompareButton from "./NavBarCompareButton";
+// import NavBarCompareButton from "./NavBarCompareButton";
 import NavBarLikedProductList from "./NavBarLikedProductList";
 
 // components
@@ -12,7 +12,7 @@ const NavOptions = () => {
   return (
     <div className="flex h-[100%] pl-2">
       <NavBarViewed />
-      <NavBarCompareButton />
+      {/* <NavBarCompareButton /> */}
       <NavBarLikedProductList />
       <NavBarShoppingButton />
       <NavBarSearchButton />

@@ -1,6 +1,7 @@
 import { combineReducers } from "@reduxjs/toolkit";
 
 // reducers
+
 import { productsApiSlice } from "./slices/products/products";
 import { categoryApiSlice } from "./slices/categories/categories";
 import { viewedProductsReducer } from "./slices/viewed_product_slice/viewed.product.slice";

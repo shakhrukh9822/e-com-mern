@@ -2,7 +2,18 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-const NavOptionsButton = ({ children, link, hasBadge, badgeNumber }) => {
+const NavOptionsButton = ({ children, link, hasBadge, badgeNumber, type }) => {
+  if (type === "button") {
+    return (
+      <button
+        className="ml-3 hover:text-red-600 text-white relative headerNavBadge"
+        type="button"
+      >
+        {children}
+      </button>
+    );
+  }
+
   return (
     <Link
       to={link}
@@ -24,6 +35,7 @@ NavOptionsButton.propTypes = {
   link: PropTypes.string,
   badgeNumber: PropTypes.number,
   hasBadge: PropTypes.bool,
+  type: PropTypes.string,
 };
 
 NavOptionsButton.defaultProps = {
@@ -31,6 +43,7 @@ NavOptionsButton.defaultProps = {
   link: "/",
   badgeNumber: 0,
   hasBadge: false,
+  type: "",
 };
 
 export default NavOptionsButton;

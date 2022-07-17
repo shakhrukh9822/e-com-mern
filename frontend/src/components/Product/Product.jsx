@@ -12,7 +12,7 @@ import CardHeartIcon from "./components/CardHeartIcon";
 import CardSeeLaterButton from "./components/CardSeeLaterButton";
 import CardProductModel from "./components/CardProductModel";
 import CardProductBanner from "./components/CardProductBanner";
-import CardCompareButton from "./components/CardCompareButton";
+// import CardCompareButton from "./components/CardCompareButton";
 
 // Placeholder Img
 import placeHolderProductimg from "assets/images/place-holder-imgs/placeholdere_product.png";
@@ -61,7 +61,7 @@ const Product = ({ product }) => {
           <div className="flex items-center">
             <CardSeeLaterButton product={product} />
             <CardHeartIcon product={product} />
-            <CardCompareButton product={product} />
+            {/* <CardCompareButton product={product} /> */}
           </div>
         </div>
         <div className="flex items-center justify-between">

@@ -7,6 +7,8 @@ const productAdapter = createEntityAdapter({
 
 const initialState = productAdapter.getInitialState({
   productCount: 0,
+  resultPerPage: 0,
+  products: [],
 });
 
 export const productsApiSlice = createApi({
@@ -17,11 +19,13 @@ export const productsApiSlice = createApi({
   }),
   endpoints: (builder) => ({
     getProducts: builder.query({
-      query: () => "/api/v1/products",
+      query: (currentPage) => `/api/v1/products?page=${currentPage}`,
       transformResponse: (response) => {
-        const { products, productCount } = response;
+        const { products, productCount, resultPerPage } = response;
 
         initialState.productCount = productCount;
+        initialState.resultPerPage = resultPerPage;
+        initialState.products = products;
 
         return productAdapter.setAll(initialState, products);
       },
@@ -29,14 +33,6 @@ export const productsApiSlice = createApi({
     }),
     getProductDetail: builder.query({
       query: (id) => `/api/v1/product/${id}`,
-    }),
-    addToFavourite: builder.mutation({
-      query: (id) => ({
-        url: `/api/v1/add-to-favourites/${id}`,
-        method: "POST",
-        body: id,
-      }),
-      invalidatesTags: ["Products"],
     }),
   }),
 });

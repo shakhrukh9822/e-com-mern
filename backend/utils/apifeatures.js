@@ -5,16 +5,16 @@ class ApiFeatures {
   }
 
   search() {
-    const keyword = this.queryString.keyword
+    const q = this.queryString.q
       ? {
           name: {
-            $regex: this.queryString.keyword,
+            $regex: this.queryString.q,
             $options: "i",
           },
         }
       : {};
 
-    this.query = this.query.find({ ...keyword });
+    this.query = this.query.find({ ...q });
 
     return this;
   }
@@ -22,7 +22,7 @@ class ApiFeatures {
   filter() {
     const queryCopy = { ...this.queryString };
     // Removing some fields for the category
-    const removeFields = ["keyword", "page", "limit"];
+    const removeFields = ["q", "page", "limit"];
 
     removeFields.forEach((key) => delete queryCopy[key]);
 
@@ -35,7 +35,7 @@ class ApiFeatures {
   }
 
   pagination(resultPerPage) {
-    const currentPage = Number(this.queryString .page) || 1;
+    const currentPage = Number(this.queryString.page) || 1;
 
     const skip = resultPerPage * (currentPage - 1);
 

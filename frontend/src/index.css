@@ -27,6 +27,10 @@ button {
   outline: none !important;
 }
 
+input {
+  outline: none !important;
+}
+
 .homePageBanner .swiper-button-next,
 .homePageBanner .swiper-button-prev {
   display: none;
@@ -91,6 +95,48 @@ button {
 .headerNavBadge:hover span {
   border-color: #b91c1c;
   color: #b91c1c;
+}
+
+.pagination-row .pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  padding: 10px;
+  border-radius: 5px;
+  width: max-content;
+  margin: 20px auto;
+}
+
+.pagination-row .pagination .page-item {
+  width: 45px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* border: 1px solid; */
+  margin: 0 4px;
+  transition: all ease 100ms;
+  cursor: pointer;
+}
+
+.pagination-row .pagination .page-item.disabled,
+.pagination-row .pagination .page-item.disabled a {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pagination-row .pagination .page-item.page-item__active,
+.pagination-row .pagination .page-item:hover {
+  border: 1px solid #18181b;
+  border-radius: 5px;
+  background-color: #18181beb;
+}
+
+.pagination-row .pagination .page-item .page-link.page-link__active,
+.pagination-row .pagination .page-item:hover .page-link {
+  color: #fff;
 }
 
 ::selection {

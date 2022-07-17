@@ -1,22 +1,23 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
+import { ScrollToTop } from "hoc";
 
 // components
 import { Layout } from "components/Layout";
 
 // Route pages ########################
 import { Home } from "pages/Home";
-import { ScrollToTop } from "hoc";
 import { About } from "pages/About";
 import { Viewed } from "pages/Viewed";
+import { Search } from "pages/Search";
 import { Contact } from "pages/Contact";
+import { Compare } from "pages/Compare";
 import { Products } from "pages/Products";
+import { UserAccont } from "pages/UserAccont";
+import { ShoppingCart } from "pages/ShoppingCart";
 import { LikedProducts } from "pages/LikedProducts";
 import { ProductDetails } from "pages/ProductDetails";
-import { Search } from "pages/Search";
-import { ShoppingCart } from "pages/ShoppingCart";
-import { UserAccont } from "pages/UserAccont";
-import { Compare } from "pages/Compare";
+import { NotFound } from "components/404";
 
 // routes array #######################
 const route = [
@@ -41,6 +42,7 @@ const Router = () => {
         {route.map((route, i) => (
           <Route key={i} path={route.path} element={route.element} />
         ))}
+        <Route path={"*"} element={<NotFound />} />
       </Routes>
     </Layout>
   );

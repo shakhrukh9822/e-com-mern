@@ -25,6 +25,7 @@ import "swiper/css/navigation";
 import "swiper/css/thumbs";
 import "tippy.js/dist/tippy.css";
 import "react-toastify/dist/ReactToastify.css";
+
 // triggering request of getting all products
 store.dispatch(productsApiSlice.endpoints.getProducts.initiate());
 store.dispatch(categoryApiSlice.endpoints.getCategories.initiate());
