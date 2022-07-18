@@ -17,7 +17,7 @@ import CardProductBanner from "./components/CardProductBanner";
 // Placeholder Img
 import placeHolderProductimg from "assets/images/place-holder-imgs/placeholdere_product.png";
 
-const Product = ({ product }) => {
+const Product = ({ product, extraClasses, inViewedLaterList, inLikedList }) => {
   const id = get(product, "_id", 0);
   const price = get(product, "price", 0);
   const ratings = get(product, "ratings", 0);
@@ -37,7 +37,7 @@ const Product = ({ product }) => {
 
   return (
     <div
-      className="rounded-[5px] relative"
+      className={`rounded-[5px] relative ${extraClasses}`}
       style={{
         boxShadow:
           "rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px",
@@ -47,8 +47,8 @@ const Product = ({ product }) => {
       <CardProductBanner image={productCheckedValueBanner} name={producName} />
       <div className="p-3">
         <Link
-          className="product-card-text-ellips font-semibold text-[22px] text-textColor hover:text-gray-800 hover:underline h-[53px]"
-          to={`product/${id}`}
+          className="product-card-text-ellips font-semibold text-[22px] text-textColor hover:text-gray-800 hover:underline md:h-[53px] h-[35px]"
+          to={`/product/${id}`}
         >
           {producName}
         </Link>
@@ -59,8 +59,16 @@ const Product = ({ product }) => {
             discauntPrecent={discauntPrecent}
           />
           <div className="flex items-center">
-            <CardSeeLaterButton product={product} />
-            <CardHeartIcon product={product} />
+            <CardSeeLaterButton
+              product={product}
+              inViewedLaterList={inViewedLaterList}
+              inLikedList={inLikedList}
+            />
+            <CardHeartIcon
+              product={product}
+              inLikedList={inLikedList}
+              inViewedLaterList={inViewedLaterList}
+            />
             {/* <CardCompareButton product={product} /> */}
           </div>
         </div>
@@ -79,10 +87,14 @@ const Product = ({ product }) => {
 
 Product.propTypes = {
   product: PropTypes.object,
+  extraClasses: PropTypes.string,
+  inViewedLaterList: PropTypes.bool,
 };
 
 Product.defaultProps = {
   product: {},
+  extraClasses: "",
+  inViewedLaterList: false,
 };
 
 export default Product;

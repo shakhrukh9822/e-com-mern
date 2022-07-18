@@ -28,15 +28,15 @@ const Search = () => {
 
   const products = get(data, "products", []);
 
-  console.log(products.length);
-
   return (
     <Container>
       <div className="my-6">
-        <span className="text-[18px]">Search Result: {products.length}</span>
+        <span className="text-[24px]">Search Result: {products.length}</span>
       </div>
 
-      {products?.length === 0 && isLoading === false ? <NoResults /> : null}
+      {products?.length === 0 && isLoading === false ? (
+        <NoResults type={"search"} />
+      ) : null}
 
       {isLoading ? (
         <div className="flex items-center justify-center h-[50vh] w-full">

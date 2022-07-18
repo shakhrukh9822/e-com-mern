@@ -8,7 +8,7 @@ const CardPrices = ({ hasDiscaunt, price, discauntPrecent }) => {
 
   return (
     <div className="flex items-center">
-      <span className="line-height-1 font-semibold text-[30px] text-gray-800">
+      <span className="line-height-1 font-semibold md:text-[30px] text-[26px] text-gray-800">
         {discpountPrice} $
       </span>
       {hasDiscaunt ? (

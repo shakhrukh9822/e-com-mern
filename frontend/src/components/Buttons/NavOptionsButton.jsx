@@ -21,7 +21,7 @@ const NavOptionsButton = ({ children, link, hasBadge, badgeNumber, type }) => {
       type="button"
     >
       {children}
-      {hasBadge ? (
+      {hasBadge & (badgeNumber > 0) ? (
         <span className="absolute -top-3 -right-1 w-[18px] h-[18px] bg-white text-black flex items-center justify-center rounded-full border-[1px]">
           {badgeNumber}
         </span>

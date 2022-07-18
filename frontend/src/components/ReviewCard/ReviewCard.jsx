@@ -11,7 +11,6 @@ const ReviewCard = ({ review }) => {
   const rating = get(review, "rating", 0);
   const comment = get(review, "comment", "user comment");
 
-  console.log(review);
   return (
     <div
       className="p-2 sm:min-w-[350px] sm:max-w-[350px] min-w-[300px] max-w-[300px] rounded-md"

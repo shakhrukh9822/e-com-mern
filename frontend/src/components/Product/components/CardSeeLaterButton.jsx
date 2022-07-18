@@ -10,8 +10,9 @@ import CardOptionsButton from "./CardOptionsButton";
 
 // icons
 import { BsEye, BsEyeFill } from "react-icons/bs";
+import CardTrashButton from "./CardTrashButton";
 
-const CardSeeLaterButton = ({ product }) => {
+const CardSeeLaterButton = ({ product, inViewedLaterList, inLikedList }) => {
   const { addViewedProduct, deleteViewedProduct } = useActions();
   const AllViewedProducts = useSelector(selectAllViewedProducts);
 
@@ -20,9 +21,21 @@ const CardSeeLaterButton = ({ product }) => {
   );
 
   return (
-    <CardOptionsButton title={"See Later"}>
+    <CardOptionsButton title={inViewedLaterList ? "Remove" : "See Later"}>
       {get(addedProductToViewList, "viewLater", false) ? (
-        <BsEyeFill size={22} onClick={() => deleteViewedProduct(product._id)} />
+        <div>
+          {inViewedLaterList && !inLikedList ? (
+            <CardTrashButton
+              productId={product._id}
+              onClick={deleteViewedProduct}
+            />
+          ) : (
+            <BsEyeFill
+              size={22}
+              onClick={() => deleteViewedProduct(product._id)}
+            />
+          )}
+        </div>
       ) : (
         <BsEye
           size={22}

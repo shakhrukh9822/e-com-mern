@@ -3,7 +3,7 @@ import { PropTypes } from "prop-types";
 
 const CardProductBanner = ({ image, name }) => {
   return (
-    <div className="flex items-center justify-center w-[100%] h-[300px] p-3 border-b-[1px]">
+    <div className="flex items-center justify-center w-[100%] md:h-[300px] h-[250px] p-3 border-b-[1px]">
       <img
         className="max-w-[100%] h-[100%] object-contain"
         src={image}
