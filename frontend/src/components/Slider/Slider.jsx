@@ -14,72 +14,42 @@ const Slider = ({
   swiperClass = "",
   slidesPerView = 1,
   activeThumb,
-  onSwiper,
-  isThumbSwiper = false,
 }) => {
   return (
     <>
-      {!isThumbSwiper ? (
-        <Swiper
-          style={{ height: "100%" }}
-          spaceBetween={spaceBetween}
-          centeredSlides={centeredSlides}
-          thumbs={{ swiper: activeThumb }}
-          loop={loop}
-          watchSlidesProgress
-          autoplay={{
-            delay: delay,
-            disableOnInteraction: false,
-          }}
-          pagination={{
-            clickable: true,
-          }}
-          slidesPerView={slidesPerView}
-          navigation={true}
-          // Autoplay
-          modules={[Pagination, Navigation, Thumbs]}
-          className={swiperClass}
-        >
-          {datas.map((data) => (
-            <SwiperSlide
-              style={{ height: "100%" }}
-              key={data.public_id}
-              className="bg-slate-700"
-            >
-              <img src={data.url} alt={"product"} />
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      ) : null}
-
-      {isThumbSwiper ? (
-        <Swiper
-          style={{ height: "100%" }}
-          spaceBetween={spaceBetween}
-          onSwiper={onSwiper ? () => onSwiper : null}
-          loop={loop}
-          pagination={{
-            clickable: true,
-          }}
-          slidesPerView={slidesPerView}
-          navigation={true}
-          modules={[Thumbs]}
-          className={swiperClass}
-        >
-          {datas.map((data) => (
-            <SwiperSlide
-              style={{ height: "100%" }}
-              key={data.public_id}
-              className="bg-slate-700"
-            >
-              <img src={data.url} alt={"product"} />
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      ) : null}
+      <Swiper
+        style={{ height: "100%" }}
+        spaceBetween={spaceBetween}
+        centeredSlides={centeredSlides}
+        thumbs={{ swiper: activeThumb }}
+        loop={loop}
+        watchSlidesProgress
+        autoplay={{
+          delay: delay,
+          disableOnInteraction: false,
+        }}
+        pagination={{
+          clickable: true,
+        }}
+        slidesPerView={slidesPerView}
+        navigation={true}
+        modules={[Autoplay, Pagination, Navigation, Thumbs]}
+        className={swiperClass}
+      >
+        {datas.map((data, index) => (
+          <SwiperSlide style={{ height: "100%" }} key={index}>
+            <div className="w-[100%] h-[100%] rounded-lg overflow-hidden">
+              <img
+                className="object-fill w-[100%] h-[100%]"
+                src={data.url}
+                alt={"product"}
+              />
+            </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
     </>
   );
 };
 
-// {isThumbSwiper ? "" : null}
 export default Slider;

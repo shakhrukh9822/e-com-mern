@@ -24,6 +24,7 @@ const Viewed = () => {
       NoResultsTitle="viewedLater"
       filteredProducts={filteredProducts}
       title={"See Later Prducts"}
+      helemetTitle="See Later Prducts"
     />
   );
 };

@@ -24,6 +24,7 @@ const LikedProducts = () => {
       NoResultsTitle="likedProducts"
       title={"Favourite Products"}
       filteredProducts={filteredProducts}
+      helemetTitle="Liked Prducts"
     />
   );
 };

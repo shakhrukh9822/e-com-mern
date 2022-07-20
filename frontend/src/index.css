@@ -139,6 +139,17 @@ input {
   color: #fff;
 }
 
+.category-list-scroll::-webkit-scrollbar {
+  width: 8px;
+  background-color: rgba(128, 128, 128, 0.313);
+  border-radius: 3px;
+}
+
+.category-list-scroll::-webkit-scrollbar-thumb {
+  background-color: gray;
+  border-radius: 3px;
+}
+
 ::selection {
   background-color: transparent;
 }

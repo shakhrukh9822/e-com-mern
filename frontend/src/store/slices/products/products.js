@@ -8,6 +8,7 @@ const productAdapter = createEntityAdapter({
 const initialState = productAdapter.getInitialState({
   productCount: 0,
   resultPerPage: 0,
+  filteredProductCount: 0,
   products: [],
 });
 
@@ -21,11 +22,13 @@ export const productsApiSlice = createApi({
     getProducts: builder.query({
       query: (currentPage) => `/api/v1/products?page=${currentPage}`,
       transformResponse: (response) => {
-        const { products, productCount, resultPerPage } = response;
+        const { products, productCount, resultPerPage, filteredProductCount } =
+          response;
 
         initialState.productCount = productCount;
         initialState.resultPerPage = resultPerPage;
         initialState.products = products;
+        initialState.filteredProductCount = filteredProductCount;
 
         return productAdapter.setAll(initialState, products);
       },

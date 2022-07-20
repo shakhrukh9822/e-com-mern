@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
-import PropTypes from "prop-types";
 import { get } from "lodash";
+import PropTypes from "prop-types";
+import { Helmet } from "react-helmet-async";
 
 // components
 import { MainTitle } from "components/Title";
@@ -15,9 +16,13 @@ const FilteredProductsByCategorySliders = ({
   NoResultsTitle,
   inViewedLaterList,
   inLikedList,
+  helemetTitle,
 }) => {
   return (
     <Container>
+      <Helmet>
+        <title>{helemetTitle}</title>
+      </Helmet>
       <div className="my-6">
         <MainTitle title={title} extraClasses={"mx-auto mb-4"} />
       </div>
@@ -56,6 +61,7 @@ FilteredProductsByCategorySliders.propTypes = {
   NoResultsTitle: PropTypes.string,
   inViewedLaterList: PropTypes.bool,
   inLikedList: PropTypes.bool,
+  helemetTitle: PropTypes.string,
 };
 
 FilteredProductsByCategorySliders.defaultProps = {
@@ -64,6 +70,7 @@ FilteredProductsByCategorySliders.defaultProps = {
   NoResultsTitle: "Empty Result Title",
   inViewedLaterList: false,
   inLikedList: false,
+  helemetTitle: "Your Page Title",
 };
 
 export default FilteredProductsByCategorySliders;

@@ -38,13 +38,22 @@ exports.searchProducts = catchAsyncError(async (req, res, next) => {
 
   const apiFetaures = new ApiFeatures(Product.find(), req.query)
     .search()
-    .filter()
-    .pagination(resultPerPage);
-  const products = await apiFetaures.query;
+    .filter();
 
-  res
-    .status(200)
-    .json({ success: true, products, productCount, resultPerPage });
+  let products = await apiFetaures.query;
+  const filteredProductCount = products.length;
+
+  apiFetaures.pagination(resultPerPage);
+
+  products = await apiFetaures.query.clone();
+
+  res.status(200).json({
+    success: true,
+    products,
+    productCount,
+    resultPerPage,
+    filteredProductCount,
+  });
 });
 // ==========================================
 

@@ -2,13 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import { PaginationComponent } from "components/PaginationComponent";
 
-// icons
-// import {
-//   MdOutlineKeyboardArrowRight,
-//   MdOutlineKeyboardArrowLeft,
-//   MdDoubleArrow,
-// } from "react-icons/md";
-
 const ProductsPagnation = ({
   resultPerPage,
   productCount,
@@ -17,7 +10,6 @@ const ProductsPagnation = ({
 }) => {
   return (
     <div>
-      {" "}
       {resultPerPage < productCount ? (
         <div className="pagination-row">
           <PaginationComponent
@@ -25,10 +17,6 @@ const ProductsPagnation = ({
             itemsCountPerPage={resultPerPage}
             totalItemsCount={productCount}
             onChange={(e) => setCurrentPage(e)}
-            // firstPageText={<MdDoubleArrow size={20} className="rotate-180" />}
-            // lastPageText={<MdDoubleArrow size={20} />}
-            // nextPageText={<MdOutlineKeyboardArrowRight size={22} />}
-            // prevPageText={<MdOutlineKeyboardArrowLeft size={22} />}
             itemClass={"page-item"}
             linkClass={"page-link"}
             activeClass={"page-item__active"}
