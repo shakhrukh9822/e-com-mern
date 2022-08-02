@@ -154,6 +154,18 @@ input {
   background-color: transparent;
 }
 
+input[type="file"]::file-selector-button {
+  background-color: transparent;
+  border: none;
+  width: 100%;
+  text-align: left;
+  padding-left: 10px;
+}
+
+input {
+  border: 1px solid;
+}
+
 input,
 textarea,
 button,

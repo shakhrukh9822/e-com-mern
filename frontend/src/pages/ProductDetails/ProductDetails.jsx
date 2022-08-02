@@ -2,7 +2,7 @@ import React from "react";
 import { get } from "lodash";
 import { Helmet } from "react-helmet-async";
 import { useParams } from "react-router-dom";
-import { useGetProductDetailQuery } from "store/slices/products/products";
+import { useGetProductDetailQuery } from "store/slices/products_slice/products.slice";
 
 // outsider components
 import { Stars } from "components/Stars";

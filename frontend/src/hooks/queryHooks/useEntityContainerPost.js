@@ -6,10 +6,12 @@ const useEntityContainerPost = ({
   onSuccess,
   onError,
   // params = {},
-  headers = {},
+  headers = "multipart/form-data",
 }) => {
   const addItem = async (item) => {
-    const response = await axiosClient.post(url, item, { headers });
+    const response = await axiosClient.post(url, item, {
+      "Content-type": headers,
+    });
     return response;
   };
   return useMutation(addItem, {

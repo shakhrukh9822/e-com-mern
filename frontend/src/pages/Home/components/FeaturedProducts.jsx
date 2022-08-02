@@ -2,7 +2,7 @@
 import { Container } from "components/Container";
 import { MainTitle } from "components/Title";
 import { ProductsGrid } from "components/ProductsGrid";
-import { selectAllProducts } from "store/slices/products/products";
+import { selectAllProducts } from "store/slices/products_slice/products.slice";
 import { useSelector } from "react-redux";
 
 const FeaturedProducts = () => {
@@ -10,7 +10,7 @@ const FeaturedProducts = () => {
 
   return (
     <Container>
-      <MainTitle title={"featured products"} extraClasses="mx-auto mb-5" />
+      <MainTitle title={"featured products"} extraClasses="mx-auto my-6" />
       <ProductsGrid products={products} />
     </Container>
   );

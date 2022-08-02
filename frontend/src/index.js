@@ -11,8 +11,8 @@ import { PersistGate } from "redux-persist/integration/react";
 
 // Global Store
 import store, { persistor } from "store";
-import { productsApiSlice } from "store/slices/products/products";
-import { categoryApiSlice } from "store/slices/categories/categories";
+import { productsApiSlice } from "store/slices/products_slice/products.slice";
+import { categoryApiSlice } from "store/slices/categories_slice/categories.slice";
 
 // components
 import App from "./App";
@@ -30,6 +30,7 @@ import "react-toastify/dist/ReactToastify.css";
 store.dispatch(productsApiSlice.endpoints.getProducts.initiate());
 store.dispatch(categoryApiSlice.endpoints.getCategories.initiate());
 
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
@@ -37,7 +38,7 @@ root.render(
       <QueryClient>
         <HelmetProvider>
           <Provider store={store}>
-            <ToastContainer position="bottom-center" limit={1} />
+            <ToastContainer position="top-right" />
             <AnimatePresence>
               <PersistGate persistor={persistor} loading={null}>
                 <App />

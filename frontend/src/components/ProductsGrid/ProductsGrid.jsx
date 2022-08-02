@@ -1,7 +1,7 @@
 import React from "react";
 
 // store
-import { useGetProductsQuery } from "store/slices/products/products";
+import { useGetProductsQuery } from "store/slices/products_slice/products.slice";
 
 // components
 import { ApiError } from "components/ApiError";

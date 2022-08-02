@@ -1,9 +1,11 @@
-import React, {  useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { get } from "lodash";
 import { Helmet } from "react-helmet-async";
 
 // store hook
-import { useGetProductsQuery } from "store/slices/products/products";
+import { useGetProductsQuery } from "store/slices/products_slice/products.slice";
+
+import { FaFilter } from "react-icons/fa";
 
 // components
 import { Loader } from "components/Loader";
@@ -13,7 +15,6 @@ import { SearchField } from "components/SearchField";
 import { ProductsGrid } from "components/ProductsGrid";
 import { ProductsFilterAside } from "components/ProductsFilterAside";
 import { ProductsPagnation } from "components/ProductsPagnation";
-
 
 const Products = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -36,18 +37,18 @@ const Products = () => {
         <div className="ml-auto my-4 w-[100%] lg:w-[50%] flex justify-end">
           <SearchField />
         </div>
-        <div className="my-6">
-          <MainTitle title={"all Products"} />
+        <div className="my-6 flex items-center justify-between">
+          <MainTitle title={"all Products"} extraClasses={"mt-0"} />
+          <button className="border px-4 py-2 rounded-md  text-gray-800 hover:text-gray-50 hover:bg-slate-800 transition-all lg:hidden">
+            <FaFilter size={20} />
+          </button>
         </div>
         <div className="flex gap-6">
-          <div
-            className="w-[30%] xl:w-[25%] xxl:w-[20%]"
-            style={{ display: "unset" }}
-          >
+          <div className="w-[30%] xl:w-[25%] xxl:w-[20%] lg:block hidden">
             <ProductsFilterAside />
           </div>
 
-          <div className="w-[70%] xl:w-[75%] xxl:w-[80%]">
+          <div className="w-[100%] lg:w-[70%] xl:w-[75%] xxl:w-[80%]">
             {isLoading ? (
               <div className="flex items-center justify-center h-[50vh] w-full">
                 <div className="w-[100px]">

@@ -10,6 +10,8 @@ import { Home } from "pages/Home";
 import { About } from "pages/About";
 import { Viewed } from "pages/Viewed";
 import { Search } from "pages/Search";
+import { SignUp } from "pages/SignUp";
+import { SignIn } from "pages/SignIn";
 import { Contact } from "pages/Contact";
 import { Compare } from "pages/Compare";
 import { Products } from "pages/Products";
@@ -25,6 +27,8 @@ const route = [
   { path: "/about", element: <About /> },
   { path: "/viewed", element: <Viewed /> },
   { path: "/search", element: <Search /> },
+  { path: "/sign-up", element: <SignUp /> },
+  { path: "/sign-in", element: <SignIn /> },
   { path: "/compare", element: <Compare /> },
   { path: "/contact", element: <Contact /> },
   { path: "/products", element: <Products /> },

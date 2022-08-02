@@ -6,7 +6,6 @@ const MainTitle = ({ title, extraClasses }) => {
     <div
       className={` 
       w-max
-      mt-3
       text-[1.8rem] 
       capitalize 
       md:text-[2.3rem] 

@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 import { MIN, MAX } from "settings/productRangeSliderPrice";
 import { useSelector } from "react-redux";
-import { selectAllCategories } from "store/slices/categories/categories";
+import { selectAllCategories } from "store/slices/categories_slice/categories.slice";
 import { get } from "lodash";
 import { raitings } from "settings/filterRatings";
 

@@ -1,4 +1,5 @@
 const app = require("./app");
+const cloudinary = require("./cloudinary/cloudinary");
 const dotenv = require("dotenv");
 
 const connectionToDb = require("./config/database");

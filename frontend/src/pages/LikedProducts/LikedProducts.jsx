@@ -6,7 +6,7 @@ import { sortProductsByCategory } from "utils/sortProductsByCategory";
 import { FilteredProductsByCategorySliders } from "components/FilteredProductsByCategorySliders";
 
 // store
-import { selectAllCategories } from "store/slices/categories/categories";
+import { selectAllCategories } from "store/slices/categories_slice/categories.slice";
 import { selectAllLikedProducts } from "store/slices/liked_products_slice/liked.products.slice";
 
 const LikedProducts = () => {
