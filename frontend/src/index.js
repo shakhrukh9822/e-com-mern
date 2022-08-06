@@ -25,11 +25,11 @@ import "swiper/css/navigation";
 import "swiper/css/thumbs";
 import "tippy.js/dist/tippy.css";
 import "react-toastify/dist/ReactToastify.css";
+import "react-tabs/style/react-tabs.css";
 
 // triggering request of getting all products
 store.dispatch(productsApiSlice.endpoints.getProducts.initiate());
 store.dispatch(categoryApiSlice.endpoints.getCategories.initiate());
-
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

@@ -10,17 +10,15 @@ const cloudinary = require("cloudinary");
 // Register a User==========================
 exports.registerUser = catchAsyncError(async (req, res) => {
   try {
-    const avatar = req.file;
-
     const myCloud = await cloudinary.v2.uploader.upload(
-      req.file,
+      req.body.avatar,
       {
-        public_id: `${Date.now()}`,
-        resource_type: "auto",
+        folder: "avatars",
+        width: 150,
+        crop: "scale",
       },
       function (err, result) {
         console.log(err);
-        console.log(result);
       }
     );
 
@@ -149,6 +147,31 @@ exports.resetPassword = catchAsyncError(async (req, res, next) => {
 // Get user details==========================
 exports.getMyDetails = catchAsyncError(async (req, res, next) => {
   const user = await User.findById(req.user.id);
+
+  res.status(200).json({ success: true, user });
+});
+// ==========================================
+// Get user details==========================
+exports.setUserBanner = catchAsyncError(async (req, res, next) => {
+  const myCloud = await cloudinary.v2.uploader.upload(req.body.user_banner, {
+    folder: "user_banners",
+    width: 1500,
+    height: 300,
+    crop: "scale",
+  });
+
+  const newUserData = {
+    user_banner: {
+      public_id: myCloud.public_id,
+      url: myCloud.secure_url,
+    },
+  };
+
+  const user = await User.findByIdAndUpdate(req.user.id, newUserData, {
+    new: true,
+    runValidators: true,
+    useFindAndModify: false,
+  });
 
   res.status(200).json({ success: true, user });
 });

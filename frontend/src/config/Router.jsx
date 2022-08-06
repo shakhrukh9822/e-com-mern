@@ -20,6 +20,9 @@ import { ShoppingCart } from "pages/ShoppingCart";
 import { LikedProducts } from "pages/LikedProducts";
 import { ProductDetails } from "pages/ProductDetails";
 import { NotFound } from "components/404";
+import { Dashboard } from "pages/Dashboard";
+import { Porfile } from "pages/Porfile";
+import { Orders } from "pages/Orders";
 
 // routes array #######################
 const route = [
@@ -36,6 +39,9 @@ const route = [
   { path: "/shopping-cart", element: <ShoppingCart /> },
   { path: "/product/:id", element: <ProductDetails /> },
   { path: "/liked-products", element: <LikedProducts /> },
+  { path: "/user-account/dashboard", element: <Dashboard /> },
+  { path: "/user-account/profile", element: <Porfile /> },
+  { path: "/user-account/orders", element: <Orders /> },
 ];
 
 const Router = () => {

@@ -18,13 +18,14 @@ const {
   addToFavouriteList,
   getUserFavouriteProductsList,
   deleteProductFromFavouriteList,
+  setUserBanner,
 } = require("../controllers/userController");
 
 const { isAuthentificatedUser, authorizeRole } = require("../middleware/auth");
 
 const router = express.Router();
 
-router.route("/logout").get(logOut);
+router.route("/logout").post(logOut);
 router.route("/login").post(loginUser);
 router.route("/registration").post(registerUser);
 router.route("/password/forgot").post(forgotPassword);
@@ -47,6 +48,7 @@ router
   .route("/favourite/:id")
   .post(isAuthentificatedUser, addToFavouriteList)
   .delete(isAuthentificatedUser, deleteProductFromFavouriteList);
+router.route("/set-user-banner").post(isAuthentificatedUser, setUserBanner);
 
 // Admin routes==========================
 router

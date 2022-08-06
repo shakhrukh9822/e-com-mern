@@ -1,6 +1,6 @@
 import React from "react";
 import Modal from "react-modal";
-import { IoMdClose } from "react-icons/io";
+import { CgClose } from "react-icons/cg";
 
 const customStyles = {
   content: {
@@ -16,28 +16,41 @@ const customStyles = {
 
 Modal.setAppElement("#root");
 
-const ModalWindow = () => {
-  const [modalIsOpen, setIsOpen] = React.useState(false);
-
-  function openModal() {
-    setIsOpen(true);
-  }
-
-  function closeModal() {
-    setIsOpen(false);
-  }
+const ModalWindow = ({
+  modalIsOpen,
+  setModalIsOpen,
+  className,
+  openButton,
+  closeButton,
+  children,
+  closeButtonWrapper,
+}) => {
   return (
     <div>
-      <button onClick={openModal}>Open Modal</button>
+      {openButton ? (
+        openButton
+      ) : (
+        <button onClick={() => setModalIsOpen(true)} type="button">
+          Open Modal
+        </button>
+      )}
       <Modal
+        className={`relative transition-all border p-5 z-[10000] ${className}`}
         isOpen={modalIsOpen}
-        onRequestClose={closeModal}
+        onRequestClose={() => setModalIsOpen(false)}
         style={customStyles}
         contentLabel="Example Modal"
       >
-        <button onClick={closeModal}>
-          <IoMdClose />
-        </button>
+        {children}
+        <div className={`absolute top-2 right-2 ${closeButtonWrapper}`}>
+          {closeButton ? (
+            closeButton
+          ) : (
+            <button onClick={() => setModalIsOpen(false)}>
+              <CgClose size={26} />
+            </button>
+          )}
+        </div>
       </Modal>
     </div>
   );

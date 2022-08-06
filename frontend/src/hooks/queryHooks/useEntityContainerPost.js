@@ -6,7 +6,7 @@ const useEntityContainerPost = ({
   onSuccess,
   onError,
   // params = {},
-  headers = "multipart/form-data",
+  headers = {},
 }) => {
   const addItem = async (item) => {
     const response = await axiosClient.post(url, item, {

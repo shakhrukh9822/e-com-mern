@@ -18,28 +18,36 @@ import { useActions } from "hooks/actionHooks/useActions";
 import { useEntityContainerPost } from "hooks/queryHooks";
 import { useSelector } from "react-redux";
 import { selectAuthedUser } from "store/slices/user_authentification_slice/user.authentification.slice";
+import { toast } from "react-toastify";
 
 const SignUp = () => {
   const navigate = useNavigate();
   const { userAuthentification } = useActions();
   const { mutateAsync } = useEntityContainerPost({
     url: "/api/v1/registration",
-    headers: "multipart/form-data",
   });
 
   const { isAuthentificated } = useSelector(selectAuthedUser);
 
   const onSubmit = async (values, actions) => {
     try {
-      console.log(values);
       const { resetForm } = actions;
       const data = await mutateAsync(values);
-      console.log(data);
+
       userAuthentification(data);
-      // resetForm();
+      resetForm();
+
       navigate("/user-account");
     } catch (error) {
-      console.log(error);
+      if (error?.response.status === 413) {
+        toast.error("Avatar image size is to large", {
+          position: "top-right",
+        });
+      } else {
+        toast.error(error?.response.data.message, {
+          position: "top-right",
+        });
+      }
     }
   };
 

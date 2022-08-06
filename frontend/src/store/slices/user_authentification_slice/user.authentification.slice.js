@@ -15,6 +15,11 @@ export const userAuthentificationSlice = createSlice({
       state.user = user;
       state.token = token;
     },
+    userLogOut: (state, _) => {
+      state.isAuthentificated = false;
+      state.user = {};
+      state.token = "";
+    },
   },
 });
 
