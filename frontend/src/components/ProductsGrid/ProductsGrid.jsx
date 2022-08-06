@@ -1,11 +1,12 @@
 import React from "react";
+import { PropTypes } from "prop-types";
 
 // store
 import { useGetProductsQuery } from "store/slices/products_slice/products.slice";
 
 // components
+import { Product } from "components/Product";
 import { ApiError } from "components/ApiError";
-import Product from "components/Product/Product";
 import { ProductCardSkeleton } from "components/Skeletons";
 
 const ProductsGrid = ({ products }) => {
@@ -19,8 +20,6 @@ const ProductsGrid = ({ products }) => {
       isAddedToCompare: false,
     };
   });
-
-  // console.log(transformedProducts);
 
   return (
     <ApiError error={error} isError={isError}>
@@ -42,6 +41,10 @@ const ProductsGrid = ({ products }) => {
       </ul>
     </ApiError>
   );
+};
+
+ProductsGrid.propTypes = {
+  products: PropTypes.array,
 };
 
 export default ProductsGrid;

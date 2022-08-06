@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import { PropTypes } from "prop-types";
 
 // animations
 import { motion } from "framer-motion";
@@ -47,6 +48,11 @@ const SliderScrolled = ({ children, title }) => {
       </div>
     </div>
   );
+};
+
+SliderScrolled.propTypes = {
+  children: PropTypes.array,
+  title: PropTypes.string,
 };
 
 export default SliderScrolled;

@@ -12,7 +12,7 @@ import { Form } from "components/Form";
 import { Input } from "components/Fields";
 import { MainTitle } from "components/Title";
 import { Container } from "components/Container";
-import { UploadImage } from "components/UploadImage";
+import { UploadImage } from "pages/SignUp/components/UploadImage";
 import { Divider } from "components/Divider";
 import { useActions } from "hooks/actionHooks/useActions";
 import { useEntityContainerPost } from "hooks/queryHooks";

@@ -1,5 +1,8 @@
 import React from "react";
 import Modal from "react-modal";
+import { PropTypes } from "prop-types";
+
+// icons
 import { CgClose } from "react-icons/cg";
 
 const customStyles = {
@@ -54,6 +57,16 @@ const ModalWindow = ({
       </Modal>
     </div>
   );
+};
+
+ModalWindow.propTypes = {
+  modalIsOpen: PropTypes.bool.isRequired,
+  setModalIsOpen: PropTypes.func.isRequired,
+  className: PropTypes.string,
+  openButton: PropTypes.object,
+  closeButton: PropTypes.object,
+  children: PropTypes.object,
+  closeButtonWrapper: PropTypes.string,
 };
 
 export default ModalWindow;

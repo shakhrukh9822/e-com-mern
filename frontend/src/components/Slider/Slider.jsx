@@ -1,4 +1,5 @@
 import React from "react";
+import { PropTypes } from "prop-types";
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -13,7 +14,6 @@ const Slider = ({
   delay = 2500,
   swiperClass = "",
   slidesPerView = 1,
-  activeThumb,
 }) => {
   return (
     <>
@@ -21,7 +21,6 @@ const Slider = ({
         style={{ height: "100%" }}
         spaceBetween={spaceBetween}
         centeredSlides={centeredSlides}
-        thumbs={{ swiper: activeThumb }}
         loop={loop}
         watchSlidesProgress
         autoplay={{
@@ -50,6 +49,27 @@ const Slider = ({
       </Swiper>
     </>
   );
+};
+
+Slider.propTypes = {
+  products: PropTypes.array,
+  datas: PropTypes.array,
+  spaceBetween: PropTypes.number,
+  centeredSlides: PropTypes.bool,
+  loop: PropTypes.bool,
+  delay: PropTypes.number,
+  swiperClass: PropTypes.string,
+  slidesPerView: PropTypes.number,
+};
+
+Slider.defaultProps = {
+  datas: [],
+  spaceBetween: 30,
+  centeredSlides: true,
+  loop: true,
+  delay: 2500,
+  swiperClass: "",
+  slidesPerView: 1,
 };
 
 export default Slider;

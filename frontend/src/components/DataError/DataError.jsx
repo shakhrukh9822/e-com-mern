@@ -1,4 +1,5 @@
 import React from "react";
+import { PropTypes } from "prop-types";
 
 // Error banners
 import error400Banner from "assets/images/error_banners/404_error.svg";
@@ -39,6 +40,10 @@ const Error = ({ status }) => {
       </div>
     );
   }
+};
+
+Error.propTypes = {
+  status: PropTypes.number,
 };
 
 export default Error;

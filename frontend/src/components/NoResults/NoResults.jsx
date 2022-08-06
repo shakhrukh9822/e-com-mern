@@ -1,4 +1,5 @@
 import React from "react";
+import { PropTypes } from "prop-types";
 
 import NoResultBanner from "assets/images/no-results/no-results.png";
 import NoViewedProductsBnnaer from "assets/images/no-viewed/no-viewed.png";
@@ -31,6 +32,10 @@ const NoResults = ({ type }) => {
       </h1>
     </div>
   );
+};
+
+NoResults.propTypes = {
+  type: PropTypes.string,
 };
 
 export default NoResults;

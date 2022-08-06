@@ -1,10 +1,14 @@
 import React from "react";
+import { PropTypes } from "prop-types";
 import { motion } from "framer-motion";
+import useUploadImage from "hooks/uploadFileHooks/useUploadImage";
+
+// avatar
 import userDefault from "assets/images/user_default_icon/default_user-icon.png";
 
+// icons
 import { MdModeEditOutline } from "react-icons/md";
 import { BsPlusCircleFill } from "react-icons/bs";
-import useUploadImage from "hooks/uploadFileHooks/useUploadImage";
 
 const UploadImage = ({ setFieldValue, inputName, errors }) => {
   const { handleChange, image } = useUploadImage({ setFieldValue, inputName });
@@ -66,6 +70,13 @@ const UploadImage = ({ setFieldValue, inputName, errors }) => {
       </div>
     </div>
   );
+};
+
+UploadImage.propTypes = {
+  products: PropTypes.array,
+  setFieldValue: PropTypes.func,
+  inputName: PropTypes.string,
+  errors: PropTypes.object,
 };
 
 export default UploadImage;

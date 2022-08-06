@@ -1,4 +1,5 @@
 import React from "react";
+import { PropTypes } from "prop-types";
 
 // hooks
 import { useActions } from "hooks/actionHooks/useActions";
@@ -64,6 +65,10 @@ const UserAccountOptions = ({ userRole }) => {
       </ul>
     </div>
   );
+};
+
+UserAccountOptions.propTypes = {
+  userRole: PropTypes.string,
 };
 
 export default UserAccountOptions;

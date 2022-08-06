@@ -1,7 +1,9 @@
 import React from "react";
-
-import notFoundBanner404 from "assets/images/not-found-404/not-found-404.png";
 import { Link } from "react-router-dom";
+
+// img
+import notFoundBanner404 from "assets/images/not-found-404/not-found-404.png";
+
 const NotFound = () => {
   return (
     <div className="w-full h-[60vh] flex items-center justify-center flex-col">

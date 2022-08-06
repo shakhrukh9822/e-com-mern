@@ -89,6 +89,7 @@ Product.propTypes = {
   product: PropTypes.object,
   extraClasses: PropTypes.string,
   inViewedLaterList: PropTypes.bool,
+  inLikedList: PropTypes.bool,
 };
 
 Product.defaultProps = {

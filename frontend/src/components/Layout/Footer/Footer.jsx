@@ -2,33 +2,19 @@ import React from "react";
 import Tippy from "@tippyjs/react";
 
 // components
-import { Container } from "components/Container";
 import { Logo } from "../Logo";
+import Socials from "./components/Socials";
+import Contacts from "./components/Contacts";
+import { Container } from "components/Container";
 
 // icons
 import { FaGooglePlay } from "react-icons/fa";
 import { SiAppstore } from "react-icons/si";
-import Contacts from "./components/Contacts";
-import Socials from "./components/Socials";
+
+// settings
+import { emails, locations, phones } from "settings/footer-settings";
 
 const Footer = () => {
-  const phones = [
-    { id: 1, item: "99 899 960 98 22", link: "99 899 960 98 22" },
-    { id: 2, item: "99 899 960 98 22", link: "99 899 960 98 22" },
-    { id: 3, item: "99 899 960 98 22", link: "99 899 960 98 22" },
-  ];
-  const emails = [
-    { id: 1, item: "example@example.com", link: "example@example.com" },
-  ];
-
-  const locations = [
-    {
-      id: 1,
-      item: "Abu Hayot 67",
-      link: "https://goo.gl/maps/KKYFn2Nb79LhRiUv7",
-    },
-  ];
-
   return (
     <footer className="mt-auto bg-footerBgColor md:mb-[0px] mb-[50px]">
       <Container extraClasses={"py-5"}>
