@@ -4,135 +4,140 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
 
-const userSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: [true, "Please Enter Your Name"],
-    trim: true,
-    maxLength: [30, "Name cannot exceed 30 characters"],
-    minLength: [4, "Name should not be less than 4 characters"],
-  },
-  email: {
-    type: String,
-    required: [true, "Please Enter Your Email"],
-    unique: true,
-    validate: [validator.isEmail, "Place enter a valid email address"],
-  },
-  password: {
-    type: String,
-    required: [true, "Please Enter Your Password"],
-    minLength: [8, "Password must be at least 8 characters"],
-    select: false,
-  },
-  avatar: {
-    public_id: { type: String, required: true },
-    url: { type: String, required: true },
-  },
-  user_banner: {
-    public_id: { type: String },
-    url: { type: String },
-  },
-  role: {
-    type: String,
-    default: "user",
-  },
-  userViewedLaterList: [
-    {
-      name: {
-        type: String,
-      },
-      description: {
-        type: String,
-      },
-      price: {
-        type: Number,
-      },
-      ratings: { type: Number, default: 0 },
-      images: [
-        {
-          public_id: { type: String },
-          url: { type: String },
-          original: { type: String },
-          thumbnail: { type: String },
-        },
-      ],
-      category: {
-        type: String,
-      },
-      shippingCompany: {
-        type: String,
-      },
-      productModel: {
-        type: String,
-      },
-      brand: {
-        type: String,
-      },
-      discauntPrecent: {
-        type: Number,
-      },
-      hasDiscaunt: {
-        type: Boolean,
-      },
-      isNewProduct: {
-        type: Boolean,
-      },
-      stock: {
-        type: Number,
-      },
-      numOfReviews: { type: Number, default: 0 },
+const userSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: [true, "Please Enter Your Name"],
+      trim: true,
+      maxLength: [30, "Name cannot exceed 30 characters"],
+      minLength: [4, "Name should not be less than 4 characters"],
     },
-  ],
-  userFavouriteProductsList: [
-    {
-      name: {
-        type: String,
-      },
-      description: {
-        type: String,
-      },
-      price: {
-        type: Number,
-      },
-      ratings: { type: Number, default: 0 },
-      images: [
-        {
-          public_id: { type: String },
-          url: { type: String },
-          original: { type: String },
-          thumbnail: { type: String },
-        },
-      ],
-      category: {
-        type: String,
-      },
-      shippingCompany: {
-        type: String,
-      },
-      productModel: {
-        type: String,
-      },
-      brand: {
-        type: String,
-      },
-      discauntPrecent: {
-        type: Number,
-      },
-      hasDiscaunt: {
-        type: Boolean,
-      },
-      isNewProduct: {
-        type: Boolean,
-      },
-      stock: {
-        type: Number,
-      },
-      numOfReviews: { type: Number, default: 0 },
+    email: {
+      type: String,
+      required: [true, "Please Enter Your Email"],
+      unique: true,
+      validate: [validator.isEmail, "Place enter a valid email address"],
     },
-  ],
-  resetPasswordToken: String,
-  resetPasswordExpire: Date,
-});
+    password: {
+      type: String,
+      required: [true, "Please Enter Your Password"],
+      minLength: [8, "Password must be at least 8 characters"],
+      select: false,
+    },
+    avatar: {
+      public_id: { type: String, required: true },
+      url: { type: String, required: true },
+    },
+    user_banner: {
+      public_id: { type: String },
+      url: { type: String },
+    },
+    role: {
+      type: String,
+      default: "user",
+    },
+    userViewedLaterList: [
+      {
+        name: {
+          type: String,
+        },
+        description: {
+          type: String,
+        },
+        price: {
+          type: Number,
+        },
+        ratings: { type: Number, default: 0 },
+        images: [
+          {
+            public_id: { type: String },
+            url: { type: String },
+            original: { type: String },
+            thumbnail: { type: String },
+          },
+        ],
+        category: {
+          type: String,
+        },
+        shippingCompany: {
+          type: String,
+        },
+        productModel: {
+          type: String,
+        },
+        brand: {
+          type: String,
+        },
+        discauntPrecent: {
+          type: Number,
+        },
+        hasDiscaunt: {
+          type: Boolean,
+        },
+        isNewProduct: {
+          type: Boolean,
+        },
+        stock: {
+          type: Number,
+        },
+        numOfReviews: { type: Number, default: 0 },
+      },
+    ],
+    userFavouriteProductsList: [
+      {
+        name: {
+          type: String,
+        },
+        description: {
+          type: String,
+        },
+        price: {
+          type: Number,
+        },
+        ratings: { type: Number, default: 0 },
+        images: [
+          {
+            public_id: { type: String },
+            url: { type: String },
+            original: { type: String },
+            thumbnail: { type: String },
+          },
+        ],
+        category: {
+          type: String,
+        },
+        shippingCompany: {
+          type: String,
+        },
+        productModel: {
+          type: String,
+        },
+        brand: {
+          type: String,
+        },
+        discauntPrecent: {
+          type: Number,
+        },
+        hasDiscaunt: {
+          type: Boolean,
+        },
+        isNewProduct: {
+          type: Boolean,
+        },
+        stock: {
+          type: Number,
+        },
+        numOfReviews: { type: Number, default: 0 },
+      },
+    ],
+    resetPasswordToken: String,
+    resetPasswordExpire: Date,
+  },
+  {
+    timestamps: true,
+  }
+);
 
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) {

@@ -41,7 +41,7 @@ const UserAccountOptions = ({ userRole }) => {
   return (
     <div>
       <ul
-        className="my-6"
+        className="mb-6 -mt-14"
         style={{
           display: "grid",
           gap: "20px",

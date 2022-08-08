@@ -1,9 +1,8 @@
-import React from 'react'
+import { IsAuthentificated } from "components/IsAuthentificated";
+import React from "react";
 
 const Dashboard = () => {
-  return (
-    <div>Dashboard</div>
-  )
-}
+  return <IsAuthentificated>Dashboard</IsAuthentificated>;
+};
 
-export default Dashboard
+export default Dashboard;

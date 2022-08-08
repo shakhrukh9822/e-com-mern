@@ -12,17 +12,17 @@ import { Viewed } from "pages/Viewed";
 import { Search } from "pages/Search";
 import { SignUp } from "pages/SignUp";
 import { SignIn } from "pages/SignIn";
+import { Orders } from "pages/Orders";
+import { Porfile } from "pages/Porfile";
 import { Contact } from "pages/Contact";
 import { Compare } from "pages/Compare";
+import { NotFound } from "components/404";
 import { Products } from "pages/Products";
+import { Dashboard } from "pages/Dashboard";
 import { UserAccont } from "pages/UserAccont";
 import { ShoppingCart } from "pages/ShoppingCart";
 import { LikedProducts } from "pages/LikedProducts";
 import { ProductDetails } from "pages/ProductDetails";
-import { NotFound } from "components/404";
-import { Dashboard } from "pages/Dashboard";
-import { Porfile } from "pages/Porfile";
-import { Orders } from "pages/Orders";
 
 // routes array #######################
 const route = [
@@ -38,10 +38,10 @@ const route = [
   { path: "/user-account", element: <UserAccont /> },
   { path: "/shopping-cart", element: <ShoppingCart /> },
   { path: "/product/:id", element: <ProductDetails /> },
-  { path: "/liked-products", element: <LikedProducts /> },
-  { path: "/user-account/dashboard", element: <Dashboard /> },
-  { path: "/user-account/profile", element: <Porfile /> },
   { path: "/user-account/orders", element: <Orders /> },
+  { path: "/liked-products", element: <LikedProducts /> },
+  { path: "/user-account/profile", element: <Porfile /> },
+  { path: "/user-account/dashboard", element: <Dashboard /> },
 ];
 
 const Router = () => {

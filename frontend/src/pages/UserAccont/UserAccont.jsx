@@ -1,31 +1,24 @@
-import { Container } from "components/Container";
+import React from "react";
 import { get } from "lodash";
-import React, { useEffect } from "react";
-import { Helmet } from "react-helmet-async";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { selectAuthedUser } from "store/slices/user_authentification_slice/user.authentification.slice";
+
+// components
+import { Container } from "components/Container";
 import UserAccountBanner from "./components/UserAccountBanner";
+import { IsAuthentificated } from "components/IsAuthentificated";
 import UserAccountOptions from "./components/UserAccountOptions";
 
 const UserAccont = () => {
-  const navigate = useNavigate();
-  const { isAuthentificated, user } = useSelector(selectAuthedUser);
-
-  console.log(user);
+  const { user } = useSelector(selectAuthedUser);
 
   const userAvatar = get(user, "avatar.url");
   const userBanner = get(user, "user_banner.url");
   const userRole = get(user, "role");
 
-  useEffect(() => {
-    if (!isAuthentificated) {
-      navigate("/sign-in");
-    }
-  }, [isAuthentificated, navigate]);
-
   return (
-    <>
+    <IsAuthentificated>
       <Helmet>
         <title>User Account</title>
       </Helmet>
@@ -33,7 +26,7 @@ const UserAccont = () => {
       <Container>
         <UserAccountOptions userRole={userRole} />
       </Container>
-    </>
+    </IsAuthentificated>
   );
 };
 

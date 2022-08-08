@@ -14,7 +14,6 @@ const FilterProductsByPrice = ({ setPrice, price }) => {
 
   const priceHandler = (e, newprice) => {
     setPrice(newprice);
-    localStorage.setItem("filterPrice", JSON.stringify(price));
   };
 
   const filterProductsByPrice = () => {

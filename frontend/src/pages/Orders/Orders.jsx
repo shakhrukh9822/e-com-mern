@@ -1,9 +1,8 @@
-import React from 'react'
+import { IsAuthentificated } from "components/IsAuthentificated";
+import React from "react";
 
 const Orders = () => {
-  return (
-    <div>Orders</div>
-  )
-}
+  return <IsAuthentificated>Orders</IsAuthentificated>;
+};
 
-export default Orders
+export default Orders;
