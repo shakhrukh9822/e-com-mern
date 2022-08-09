@@ -4,7 +4,11 @@ import { useNavigate } from "react-router-dom";
 
 import { IoReturnUpBackSharp } from "react-icons/io5";
 
-const GoBackButton = ({ extraClasses, GoBackButtonWrapper }) => {
+const GoBackToButton = ({
+  extraClasses,
+  GoBackButtonWrapper,
+  navigatePath,
+}) => {
   const navigate = useNavigate();
   return (
     <div className={`${GoBackButtonWrapper}`}>
@@ -14,7 +18,7 @@ const GoBackButton = ({ extraClasses, GoBackButtonWrapper }) => {
             ? extraClasses
             : `border py-1 px-4 rounded-md border-gray-900 hover:bg-gray-900 hover:text-white transition-all`
         }
-        onClick={() => navigate(-1)}
+        onClick={() => navigate(navigatePath)}
       >
         <IoReturnUpBackSharp size={30} />
       </button>
@@ -22,9 +26,9 @@ const GoBackButton = ({ extraClasses, GoBackButtonWrapper }) => {
   );
 };
 
-GoBackButton.propTypes = {
+GoBackToButton.propTypes = {
   extraClass: PropTypes.string,
   GoBackButtonWrapper: PropTypes.string,
 };
 
-export default GoBackButton;
+export default GoBackToButton;

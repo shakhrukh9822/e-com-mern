@@ -25,6 +25,7 @@ import {
   LikedProducts,
   UpdateProfile,
   ProductDetails,
+  UpdatePassword,
 } from "pages";
 
 // routes array #######################
@@ -46,6 +47,8 @@ const route = [
   { path: "/liked-products", element: <LikedProducts /> },
   { path: "/user-account/profile", element: <Porfile /> },
   { path: "/user-account/dashboard", element: <Dashboard /> },
+  { path: "/user-account/update-passowrd", element: <UpdatePassword /> },
+
 ];
 
 const Router = () => {

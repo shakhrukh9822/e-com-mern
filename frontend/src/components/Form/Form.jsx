@@ -35,7 +35,7 @@ const Form = ({
     isValid,
     submitForm,
     setFieldValue,
-    encType = false,
+    dirty,
   } = useFormik({
     initialValues: fieldsInitialStateValues
       ? fieldsInitialStateValues
@@ -47,7 +47,6 @@ const Form = ({
   return (
     <form
       className={`${formClassName ? formClassName : ""} w-[100%]`}
-      encType={encType ? "multipart/form-data" : null}
       onSubmit={handleSubmit}
       autoComplete="off"
     >
@@ -66,7 +65,11 @@ const Form = ({
         <button
           className={`felx items-center justify-center capitalize border border-gray-600 hover:bg-[#18181b] transition-all hover:text-white disabled:bg-[#18181b] disabled:text-white disabled:opacity-40 min-w-[110px] ${submitBtnClassName}`}
           type="submit"
-          disabled={!isValid}
+          disabled={
+            !isValid ||
+            (Object.keys(touched).length === 0 &&
+              touched.constructor === Object)
+          }
         >
           {isSubmitting ? (
             <div className="ml-2">{loading}</div>

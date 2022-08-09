@@ -8,15 +8,15 @@ import { Orders } from "./Orders";
 import { Porfile } from "./Porfile";
 import { Contact } from "./Contact";
 import { Compare } from "./Compare";
-import { NotFound } from "components/404";
 import { Products } from "./Products";
 import { Dashboard } from "./Dashboard";
+import { NotFound } from "components/404";
 import { UserAccont } from "./UserAccont";
 import { ShoppingCart } from "./ShoppingCart";
 import { LikedProducts } from "./LikedProducts";
 import { UpdateProfile } from "./UpdateProfile";
 import { ProductDetails } from "./ProductDetails";
-
+import { UpdatePassword } from "./UpdatePassword";
 export {
   Home,
   About,
@@ -36,4 +36,5 @@ export {
   LikedProducts,
   UpdateProfile,
   ProductDetails,
+  UpdatePassword,
 };

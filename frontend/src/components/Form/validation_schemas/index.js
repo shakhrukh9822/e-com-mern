@@ -17,7 +17,7 @@ export const formValidationSchema = yup.object().shape({
     .required("Password Required"),
   confirmPassword: yup
     .string()
-    .oneOf([yup.ref("password"), null], "password must match")
+    .oneOf([yup.ref("password"), null], "Password must match")
     .required("Confirm Password Required"),
   avatar: yup
     .mixed()

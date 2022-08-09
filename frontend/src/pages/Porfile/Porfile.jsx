@@ -8,16 +8,14 @@ import { selectAuthedUser } from "store/slices/user_authentification_slice/user.
 import { MainTitle } from "components/Title";
 import { Container } from "components/Container";
 import ProfileInfos from "./components/ProfileInfos";
-import LinkButton from "components/Buttons/LinkButton";
+import { LinkButton } from "components/Buttons";
 import { IsAuthentificated } from "components/IsAuthentificated";
-import { GoBackButton } from "components/Buttons";
+import { GoBackToButton } from "components/Buttons";
 
 const Porfile = () => {
   const { user } = useSelector(selectAuthedUser);
 
   const userAvatar = get(user, "avatar.url");
-
-  console.log(user);
 
   return (
     <IsAuthentificated>
@@ -28,9 +26,9 @@ const Porfile = () => {
       <Container extraClasses={"mt-10"}>
         <div className="flex justify-between items-center">
           <MainTitle title={"My Profile"} />
-          <GoBackButton />
+          <GoBackToButton navigatePath={"/user-account"} />
         </div>
-        <div className="md:border mt-4 rounded-md md:p-5 xl:h-[60vh] flex gap-10 xl:gap-20 xl:flex-row flex-col mb-10">
+        <div className="md:border mt-4 rounded-md md:p-5 xl:h-[60vh] flex gap-10 xl:gap-20 xl:flex-row flex-col mb-8">
           <div className="xl:w-[40%] shadow-xl drop-shadow-lg rounded-md border flex items-center justify-center flex-col p-4">
             <div className="w-[200px] h-[200px] rounded-full bg-slate-200 overflow-hidden shadow-lg drop-shadow-lg mt-10">
               <img
@@ -51,7 +49,10 @@ const Porfile = () => {
                 link={"/orders"}
                 extraClasses={"xl:mr-4 mb-4 xl:mb-0"}
               />
-              <LinkButton title={"Change Password"} link={"/password/update"} />
+              <LinkButton
+                title={"Change Password"}
+                link={"/user-account/update-passowrd"}
+              />
             </div>
           </div>
         </div>

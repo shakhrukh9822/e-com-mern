@@ -17,15 +17,16 @@ import { Form } from "components/Form";
 import { Input } from "components/Fields";
 import { MainTitle } from "components/Title";
 import { Container } from "components/Container";
-import { GoBackButton } from "components/Buttons";
+import { GoBackToButton } from "components/Buttons";
 import { UploadImage } from "components/UploadImage";
 import { IsAuthentificated } from "components/IsAuthentificated";
+import { LoadingText } from "components/LoadingText";
 
 const UpdateProfile = () => {
   const navigate = useNavigate();
-  const { userUpdateProfile } = useActions();
+  const { userUpdateActions } = useActions();
 
-  const { mutateAsync } = useEntityContainerUpdate({
+  const { mutateAsync, isLoading } = useEntityContainerUpdate({
     url: "/api/v1/me/update",
   });
 
@@ -43,17 +44,16 @@ const UpdateProfile = () => {
 
   const onSubmit = async (values, actions) => {
     try {
-      console.log(values);
       const { resetForm } = actions;
       const data = await mutateAsync(values);
 
-      userUpdateProfile(data);
+      userUpdateActions(data);
       resetForm();
 
       toast.success(data.message, {
         position: "top-right",
       });
-      navigate("/user-account");
+      navigate("/user-account/profile");
     } catch (error) {
       if (error?.response.status === 413) {
         toast.error("Avatar image size is to large", {
@@ -69,12 +69,14 @@ const UpdateProfile = () => {
 
   return (
     <IsAuthentificated>
-      <IsAuthentificated>
-        <Helmet>
-          <title>Update</title>
-        </Helmet>
+      <Helmet>
+        <title>Update Profile</title>
+      </Helmet>
+      {isLoading ? (
+        <LoadingText title={"Updating"} />
+      ) : (
         <Container extraClasses="pt-10">
-          <GoBackButton />
+          <GoBackToButton navigatePath={-1} />
           <MainTitle title={"Update Profile"} extraClasses="mx-auto" />
           <div className="form-wrapper flex items-center flex-col lg:w-[50%] xl:w-[35%] xxl:w-[25%] w-[80%] mx-auto">
             <Form
@@ -108,7 +110,6 @@ const UpdateProfile = () => {
                 errors,
                 setFieldValue,
               }) => {
-                console.log(values);
                 return (
                   <>
                     <UploadImage
@@ -156,7 +157,7 @@ const UpdateProfile = () => {
             </Form>
           </div>
         </Container>
-      </IsAuthentificated>
+      )}
     </IsAuthentificated>
   );
 };

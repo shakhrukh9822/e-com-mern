@@ -15,7 +15,7 @@ import { SearchField } from "components/SearchField";
 import { ProductsGrid } from "components/ProductsGrid";
 import { ProductsFilterAside } from "components/ProductsFilterAside";
 import { ProductsPagnation } from "components/ProductsPagnation";
-import { GoBackButton } from "components/Buttons";
+import { GoBackToButton } from "components/Buttons";
 
 const Products = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -38,7 +38,7 @@ const Products = () => {
       </Helmet>
       <div className="min-h-[100vh]">
         <div className="flex justify-between items-center">
-          <GoBackButton />
+          <GoBackToButton />
           <div className="ml-auto my-4 w-[100%] lg:w-[50%] flex justify-between">
             <SearchField />
           </div>

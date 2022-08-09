@@ -13,7 +13,6 @@ const useUploadImage = ({ setFieldValue, inputName }) => {
 
     reader.onloadend = () => {
       setImage(reader.result);
-      console.log(reader.result);
       setFieldValue(inputName, reader.result);
     };
   };
