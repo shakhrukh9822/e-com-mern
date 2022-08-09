@@ -10,6 +10,7 @@ import { Container } from "components/Container";
 import ProfileInfos from "./components/ProfileInfos";
 import LinkButton from "components/Buttons/LinkButton";
 import { IsAuthentificated } from "components/IsAuthentificated";
+import { GoBackButton } from "components/Buttons";
 
 const Porfile = () => {
   const { user } = useSelector(selectAuthedUser);
@@ -25,7 +26,10 @@ const Porfile = () => {
       </Helmet>
 
       <Container extraClasses={"mt-10"}>
-        <MainTitle title={"My Profile"} />
+        <div className="flex justify-between items-center">
+          <MainTitle title={"My Profile"} />
+          <GoBackButton />
+        </div>
         <div className="md:border mt-4 rounded-md md:p-5 xl:h-[60vh] flex gap-10 xl:gap-20 xl:flex-row flex-col mb-10">
           <div className="xl:w-[40%] shadow-xl drop-shadow-lg rounded-md border flex items-center justify-center flex-col p-4">
             <div className="w-[200px] h-[200px] rounded-full bg-slate-200 overflow-hidden shadow-lg drop-shadow-lg mt-10">

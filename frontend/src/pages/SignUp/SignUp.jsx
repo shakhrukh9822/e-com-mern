@@ -1,24 +1,24 @@
 import React, { useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { useSelector } from "react-redux";
 import { Helmet } from "react-helmet-async";
+import { Link, useNavigate } from "react-router-dom";
+import { useActions } from "hooks/actionHooks/useActions";
+import { useEntityContainerPost } from "hooks/queryHooks";
+import { selectAuthedUser } from "store/slices/user_authentification_slice/user.authentification.slice";
 
 // icons
-import { MdAlternateEmail } from "react-icons/md";
-import { RiUser3Fill } from "react-icons/ri";
 import { IoIosLock } from "react-icons/io";
+import { RiUser3Fill } from "react-icons/ri";
+import { MdAlternateEmail } from "react-icons/md";
 
 // components
 import { Form } from "components/Form";
 import { Input } from "components/Fields";
+import { Divider } from "components/Divider";
 import { MainTitle } from "components/Title";
 import { Container } from "components/Container";
-import { UploadImage } from "pages/SignUp/components/UploadImage";
-import { Divider } from "components/Divider";
-import { useActions } from "hooks/actionHooks/useActions";
-import { useEntityContainerPost } from "hooks/queryHooks";
-import { useSelector } from "react-redux";
-import { selectAuthedUser } from "store/slices/user_authentification_slice/user.authentification.slice";
-import { toast } from "react-toastify";
+import { UploadImage } from "components/UploadImage";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -36,7 +36,9 @@ const SignUp = () => {
 
       userAuthentification(data);
       resetForm();
-
+      toast.success(data.message, {
+        position: "top-right",
+      });
       navigate("/user-account");
     } catch (error) {
       if (error?.response.status === 413) {
@@ -98,6 +100,7 @@ const SignUp = () => {
               errors,
               setFieldValue,
             }) => {
+              console.log(values);
               return (
                 <>
                   <UploadImage

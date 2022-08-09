@@ -15,10 +15,11 @@ import { SearchField } from "components/SearchField";
 import { ProductsGrid } from "components/ProductsGrid";
 import { ProductsFilterAside } from "components/ProductsFilterAside";
 import { ProductsPagnation } from "components/ProductsPagnation";
+import { GoBackButton } from "components/Buttons";
 
 const Products = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const { data, isLoading } = useGetProductsQuery(currentPage);
+  const { data, isFetching } = useGetProductsQuery(currentPage);
 
   const productCount = get(data, "productCount", 0);
   const resultPerPage = get(data, "resultPerPage", 0);
@@ -28,14 +29,19 @@ const Products = () => {
     window.scrollTo(0, 0);
   }, [currentPage]);
 
+  console.log(isFetching);
+
   return (
     <Container>
       <Helmet>
         <title>All Products</title>
       </Helmet>
       <div className="min-h-[100vh]">
-        <div className="ml-auto my-4 w-[100%] lg:w-[50%] flex justify-end">
-          <SearchField />
+        <div className="flex justify-between items-center">
+          <GoBackButton />
+          <div className="ml-auto my-4 w-[100%] lg:w-[50%] flex justify-between">
+            <SearchField />
+          </div>
         </div>
         <div className="my-6 flex items-center justify-between">
           <MainTitle title={"all Products"} extraClasses={"mt-0"} />
@@ -49,7 +55,7 @@ const Products = () => {
           </div>
 
           <div className="w-[100%] lg:w-[70%] xl:w-[75%] xxl:w-[80%]">
-            {isLoading ? (
+            {isFetching ? (
               <div className="flex items-center justify-center h-[50vh] w-full">
                 <div className="w-[100px]">
                   <Loader />

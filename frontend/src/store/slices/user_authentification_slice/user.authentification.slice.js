@@ -13,7 +13,11 @@ export const userAuthentificationSlice = createSlice({
       const { user, token } = action.payload;
       state.isAuthentificated = true;
       state.user = user;
-      state.token = token;
+      state.token = token; 
+    },
+    userUpdateProfile: (state, action) => {
+      const { user } = action.payload;
+      state.user = user;
     },
     userLogOut: (state, _) => {
       state.isAuthentificated = false;

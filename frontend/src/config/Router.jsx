@@ -6,23 +6,26 @@ import { ScrollToTop } from "hoc";
 import { Layout } from "components/Layout";
 
 // Route pages ########################
-import { Home } from "pages/Home";
-import { About } from "pages/About";
-import { Viewed } from "pages/Viewed";
-import { Search } from "pages/Search";
-import { SignUp } from "pages/SignUp";
-import { SignIn } from "pages/SignIn";
-import { Orders } from "pages/Orders";
-import { Porfile } from "pages/Porfile";
-import { Contact } from "pages/Contact";
-import { Compare } from "pages/Compare";
-import { NotFound } from "components/404";
-import { Products } from "pages/Products";
-import { Dashboard } from "pages/Dashboard";
-import { UserAccont } from "pages/UserAccont";
-import { ShoppingCart } from "pages/ShoppingCart";
-import { LikedProducts } from "pages/LikedProducts";
-import { ProductDetails } from "pages/ProductDetails";
+import {
+  Home,
+  About,
+  Viewed,
+  Search,
+  SignUp,
+  SignIn,
+  Orders,
+  Porfile,
+  Contact,
+  Compare,
+  NotFound,
+  Products,
+  Dashboard,
+  UserAccont,
+  ShoppingCart,
+  LikedProducts,
+  UpdateProfile,
+  ProductDetails,
+} from "pages";
 
 // routes array #######################
 const route = [
@@ -36,6 +39,7 @@ const route = [
   { path: "/contact", element: <Contact /> },
   { path: "/products", element: <Products /> },
   { path: "/user-account", element: <UserAccont /> },
+  { path: "/me/update", element: <UpdateProfile /> },
   { path: "/shopping-cart", element: <ShoppingCart /> },
   { path: "/product/:id", element: <ProductDetails /> },
   { path: "/user-account/orders", element: <Orders /> },

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { PropTypes } from "prop-types";
 import { motion } from "framer-motion";
 import useUploadImage from "hooks/uploadFileHooks/useUploadImage";
@@ -10,8 +10,17 @@ import userDefault from "assets/images/user_default_icon/default_user-icon.png";
 import { MdModeEditOutline } from "react-icons/md";
 import { BsPlusCircleFill } from "react-icons/bs";
 
-const UploadImage = ({ setFieldValue, inputName, errors }) => {
-  const { handleChange, image } = useUploadImage({ setFieldValue, inputName });
+const UploadImage = ({ setFieldValue, inputName, errors, userAvatar }) => {
+  const { handleChange, image, setImage } = useUploadImage({
+    setFieldValue,
+    inputName,
+  });
+
+  useEffect(() => {
+    if (userAvatar) {
+      setImage(userAvatar);
+    }
+  }, [setImage, userAvatar]);
 
   return (
     <div>

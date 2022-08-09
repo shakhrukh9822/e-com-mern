@@ -13,9 +13,11 @@ const Form = ({
   loadingIcon = true,
   submitBtnClassName,
   submitBtnWrapper,
+  fieldsInitialStateValues,
 }) => {
   const fieldsName = getFieldsName(fields);
   const fieldsValidationSchema = getFieldsValidationSchema(fields);
+
   const loading = loadingIcon ? (
     <BounceLoader color="#211c1c" size={30} />
   ) : (
@@ -35,7 +37,9 @@ const Form = ({
     setFieldValue,
     encType = false,
   } = useFormik({
-    initialValues: fieldsName,
+    initialValues: fieldsInitialStateValues
+      ? fieldsInitialStateValues
+      : fieldsName,
     validationSchema: fieldsValidationSchema,
     onSubmit,
   });

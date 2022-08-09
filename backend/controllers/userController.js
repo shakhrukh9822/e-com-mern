@@ -33,7 +33,7 @@ exports.registerUser = catchAsyncError(async (req, res) => {
         url: myCloud.secure_url,
       },
     });
-    sendToken(user, 201, res);
+    sendToken(user, 201, res, "User Signed Up successfully");
   } catch (error) {
     console.log(error);
   }
@@ -53,12 +53,10 @@ exports.loginUser = catchAsyncError(async (req, res, next) => {
 
   const isPassowrdMatched = await user.comparePassword(password);
 
-  console.log(isPassowrdMatched);
-
   if (!isPassowrdMatched)
     return next(new ErrorHandler("Invalid Email or Password", 401));
 
-  sendToken(user, 200, res);
+  sendToken(user, 200, res, "User Signed In successfully");
 });
 // ==========================================
 // Log Out===================================
@@ -197,20 +195,46 @@ exports.updatePassword = catchAsyncError(async (req, res, next) => {
 // ==========================================
 // Update User Password======================
 exports.updateProfile = catchAsyncError(async (req, res, next) => {
+  const user = await User.findById(req.user.id);
+
   const newUserData = {
     name: req.body.name,
     email: req.body.email,
   };
 
-  // we will add cloudinary later
+  if (req.body.avatar !== user.avatar.url) {
+    const avatarImageId = user.avatar.public_id;
+    await cloudinary.v2.uploader.destroy(avatarImageId);
 
-  const user = await User.findByIdAndUpdate(req.user.id, newUserData, {
+    const myCloud = await cloudinary.v2.uploader.upload(
+      req.body.avatar,
+      {
+        folder: "avatars",
+        width: 150,
+        crop: "scale",
+      },
+      function (err, result) {
+        console.log(err);
+      }
+    );
+
+    newUserData.avatar = {
+      public_id: myCloud.public_id,
+      url: myCloud.secure_url,
+    };
+  }
+
+  const updatedUser = await User.findByIdAndUpdate(req.user.id, newUserData, {
     new: true,
     runValidators: true,
     useFindAndModify: false,
   });
 
-  res.status(200).json({ success: true, user });
+  res.status(200).json({
+    success: true,
+    user: updatedUser,
+    message: "User Updated Successfuly",
+  });
 });
 // ==========================================
 // Get all users = Access for ADMIN==========

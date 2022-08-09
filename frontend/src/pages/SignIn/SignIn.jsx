@@ -37,6 +37,9 @@ const SignIn = () => {
 
       userAuthentification(data);
       resetForm();
+      toast.success(data.message, {
+        position: "top-right",
+      });
       navigate("/user-account");
     } catch (error) {
       toast.error(error?.response.data.message, {
@@ -62,7 +65,7 @@ const SignIn = () => {
           <Form
             formClassName={"flex items-center w-[100%] flex-col"}
             onSubmit={onSubmit}
-            submitButtonTitle={"Sign up"}
+            submitButtonTitle={"Sign in"}
             submitBtnClassName={
               "rounded-sm px-8 py-[2px] md:ml-auto mx-auto capitalize text-[20px] font-semibold "
             }
