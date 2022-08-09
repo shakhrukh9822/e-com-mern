@@ -17,6 +17,9 @@ import { LikedProducts } from "./LikedProducts";
 import { UpdateProfile } from "./UpdateProfile";
 import { ProductDetails } from "./ProductDetails";
 import { UpdatePassword } from "./UpdatePassword";
+import { ForgotPassword } from "./ForgotPassword";
+import { ResetPassword } from "./ResetPassword";
+
 export {
   Home,
   About,
@@ -35,6 +38,8 @@ export {
   ShoppingCart,
   LikedProducts,
   UpdateProfile,
+  ResetPassword,
   ProductDetails,
   UpdatePassword,
+  ForgotPassword,
 };

@@ -1,11 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { toast } from "react-toastify";
-import { useSelector } from "react-redux";
 import { Helmet } from "react-helmet-async";
 import { Link, useNavigate } from "react-router-dom";
 import { useActions } from "hooks/actionHooks/useActions";
 import { useEntityContainerPost } from "hooks/queryHooks";
-import { selectAuthedUser } from "store/slices/user_authentification_slice/user.authentification.slice";
 
 // icons
 import { IoIosLock } from "react-icons/io";
@@ -20,6 +18,7 @@ import { MainTitle } from "components/Title";
 import { Container } from "components/Container";
 import { UploadImage } from "components/UploadImage";
 import { LoadingText } from "components/LoadingText";
+import { Authentificated } from "components/Authentificated";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -27,8 +26,6 @@ const SignUp = () => {
   const { mutateAsync, isLoading } = useEntityContainerPost({
     url: "/api/v1/registration",
   });
-
-  const { isAuthentificated } = useSelector(selectAuthedUser);
 
   const onSubmit = async (values, actions) => {
     try {
@@ -54,13 +51,8 @@ const SignUp = () => {
     }
   };
 
-  useEffect(() => {
-    if (isAuthentificated) {
-      navigate("/user-account");
-    }
-  }, [isAuthentificated, navigate]);
   return (
-    <div>
+    <Authentificated>
       <Helmet>
         <title>Sign Up</title>
       </Helmet>
@@ -173,7 +165,7 @@ const SignUp = () => {
           </div>
         </Container>
       )}
-    </div>
+    </Authentificated>
   );
 };
 

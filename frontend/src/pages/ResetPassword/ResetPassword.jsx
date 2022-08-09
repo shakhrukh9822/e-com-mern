@@ -1,30 +1,28 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { Helmet } from "react-helmet-async";
+import { useNavigate, useParams } from "react-router-dom";
+import { useActions } from "hooks/actionHooks/useActions";
+import { useEntityContainerUpdate } from "hooks/queryHooks";
 
 // icons
 import { IoIosLock } from "react-icons/io";
-import { MdAlternateEmail } from "react-icons/md";
-
-// hooks
-import { useEntityContainerPost } from "hooks/queryHooks";
-import { useActions } from "hooks/actionHooks/useActions";
 
 // components
 import { Form } from "components/Form";
+import { Input } from "components/Fields";
 import { MainTitle } from "components/Title";
 import { Container } from "components/Container";
-import { Input } from "components/Fields";
-import { Divider } from "components/Divider";
-import { toast } from "react-toastify";
 import { LoadingText } from "components/LoadingText";
 import { Authentificated } from "components/Authentificated";
 
-const SignIn = () => {
+const ResetPassword = () => {
+  const { token } = useParams();
   const navigate = useNavigate();
-  const { userAuthentification } = useActions();
-  const { mutateAsync, isLoading } = useEntityContainerPost({
-    url: "/api/v1/login",
+  const { userUpdateActions } = useActions();
+
+  const { mutateAsync, isLoading } = useEntityContainerUpdate({
+    url: `/api/v1/password/reset/${token}`,
   });
 
   const onSubmit = async (values, actions) => {
@@ -32,12 +30,13 @@ const SignIn = () => {
       const { resetForm } = actions;
       const data = await mutateAsync(values);
 
-      userAuthentification(data);
+      userUpdateActions(data);
       resetForm();
+
       toast.success(data.message, {
         position: "top-right",
       });
-      navigate("/user-account");
+      navigate("/sign-in");
     } catch (error) {
       toast.error(error?.response.data.message, {
         position: "top-right",
@@ -48,28 +47,30 @@ const SignIn = () => {
   return (
     <Authentificated>
       <Helmet>
-        <title>Sign In</title>
+        <title>Reset & Update Password</title>
       </Helmet>
       {isLoading ? (
-        <LoadingText title={"Signing In"} />
+        <LoadingText title={"Updating"} />
       ) : (
-        <Container extraClasses="pt-10">
-          <MainTitle title={"Sign In"} extraClasses="mx-auto" />
-          <div className="form-wrapper flex items-center pt-10 lg:pt-20 flex-col lg:w-[50%] xl:w-[35%] xxl:w-[25%] w-[80%] mx-auto">
+        <Container extraClasses="pt-10 lg:pt-32">
+          <MainTitle title={"Reset & Update Password"} extraClasses="mx-auto" />
+          <div className="form-wrapper flex items-center flex-col lg:w-[50%] xl:w-[35%] xxl:w-[25%] w-[80%] mx-auto">
             <Form
-              formClassName={"flex items-center w-[100%] flex-col"}
+              formClassName={
+                "flex items-center w-[100%] flex-col pt-10 lg:pt-20"
+              }
               onSubmit={onSubmit}
-              submitButtonTitle={"Sign in"}
+              submitButtonTitle={"Update"}
               submitBtnClassName={
                 "rounded-sm px-8 py-[2px] md:ml-auto mx-auto capitalize text-[20px] font-semibold "
               }
               fields={[
                 {
-                  name: "email",
-                  type: "email",
+                  name: "password",
+                  type: "password",
                 },
                 {
-                  name: "password",
+                  name: "confirmPassword",
                   type: "password",
                 },
               ]}
@@ -77,21 +78,6 @@ const SignIn = () => {
               {({ values, touched, handleBlur, handleChange, errors }) => {
                 return (
                   <>
-                    <Input
-                      name="email"
-                      errors={errors}
-                      inputId={"email"}
-                      touched={touched}
-                      inputType={"text"}
-                      value={values.email}
-                      onBlur={handleBlur}
-                      onChange={handleChange}
-                      inputGroupClassName={"mb-10"}
-                      placeholder={"Enter your Email"}
-                      inputClassName={"w-[100%] border-none"}
-                      icon={<MdAlternateEmail size={24} color={"#010101"} />}
-                      inputGroupWrapperClassName={"flex items-center px-4 py-2"}
-                    />
                     <Input
                       name="password"
                       errors={errors}
@@ -102,7 +88,22 @@ const SignIn = () => {
                       onBlur={handleBlur}
                       onChange={handleChange}
                       inputGroupClassName={"mb-10"}
-                      placeholder={"Enter your Password"}
+                      placeholder={"Enter your New Password"}
+                      inputClassName={"w-[100%] border-none"}
+                      icon={<IoIosLock size={24} color={"#010101"} />}
+                      inputGroupWrapperClassName={"flex items-center px-4 py-2"}
+                    />
+                    <Input
+                      name="confirmPassword"
+                      errors={errors}
+                      inputId={"confirmPassword"}
+                      touched={touched}
+                      inputType={"password"}
+                      value={values.confirmPassword}
+                      onBlur={handleBlur}
+                      onChange={handleChange}
+                      inputGroupClassName={"mb-10"}
+                      placeholder={"Confirm Password"}
                       inputClassName={"w-[100%] border-none"}
                       icon={<IoIosLock size={24} color={"#010101"} />}
                       inputGroupWrapperClassName={"flex items-center px-4 py-2"}
@@ -111,18 +112,6 @@ const SignIn = () => {
                 );
               }}
             </Form>
-            <Divider title={"or"} />
-            <div className="mt-0">
-              <Link className="text-[18px] underline" to={"/forgot-passowrd"}>
-                Forgot Password ?
-              </Link>
-            </div>
-            <div className="w-[100%] md:my-10 my-5 rounded-sm border text-[18px] bg-white border-[#DBDBDB] py-[10px] flex items-center justify-center">
-              <span className="block m-[8px]">Don't have an account?</span>
-              <Link className="underline" to={"/sign-up"}>
-                Sign Up
-              </Link>
-            </div>
           </div>
         </Container>
       )}
@@ -130,4 +119,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default ResetPassword;

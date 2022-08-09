@@ -22,10 +22,12 @@ import {
   Dashboard,
   UserAccont,
   ShoppingCart,
+  ResetPassword,
   LikedProducts,
   UpdateProfile,
   ProductDetails,
   UpdatePassword,
+  ForgotPassword,
 } from "pages";
 
 // routes array #######################
@@ -46,9 +48,10 @@ const route = [
   { path: "/user-account/orders", element: <Orders /> },
   { path: "/liked-products", element: <LikedProducts /> },
   { path: "/user-account/profile", element: <Porfile /> },
+  { path: "/forgot-passowrd", element: <ForgotPassword /> },
   { path: "/user-account/dashboard", element: <Dashboard /> },
+  { path: "/password/reset/:token", element: <ResetPassword /> },
   { path: "/user-account/update-passowrd", element: <UpdatePassword /> },
-
 ];
 
 const Router = () => {

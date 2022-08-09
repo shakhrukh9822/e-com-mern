@@ -65,11 +65,7 @@ const Form = ({
         <button
           className={`felx items-center justify-center capitalize border border-gray-600 hover:bg-[#18181b] transition-all hover:text-white disabled:bg-[#18181b] disabled:text-white disabled:opacity-40 min-w-[110px] ${submitBtnClassName}`}
           type="submit"
-          disabled={
-            !isValid ||
-            (Object.keys(touched).length === 0 &&
-              touched.constructor === Object)
-          }
+          disabled={!dirty}
         >
           {isSubmitting ? (
             <div className="ml-2">{loading}</div>
