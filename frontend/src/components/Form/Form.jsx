@@ -32,7 +32,6 @@ const Form = ({
     handleBlur,
     handleChange,
     handleSubmit,
-    isValid,
     submitForm,
     setFieldValue,
     dirty,
@@ -68,7 +67,9 @@ const Form = ({
           disabled={!dirty}
         >
           {isSubmitting ? (
-            <div className="ml-2">{loading}</div>
+            <div className="w-[100%] flex items-center justify-center">
+              {loading}
+            </div>
           ) : (
             submitButtonTitle
           )}

@@ -10,15 +10,13 @@ const UserAccountUploadImg = ({ setFieldValue, inputName }) => {
     inputName,
   });
 
-  console.log(inputName);
-
   return (
     <div>
       <div className="w-[100%] h-[250px] mb-2 rounded-md overflow-hidden">
         <img
           className="w-[100%] h-[100%]"
           src={image ? image : placeholderImg}
-          alt=""
+          alt="user banner"
         />
       </div>
 

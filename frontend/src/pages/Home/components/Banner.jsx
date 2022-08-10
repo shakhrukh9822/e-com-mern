@@ -9,7 +9,7 @@ import { data } from "./mockBannersData";
 
 const Banner = () => {
   return (
-    <Container extraClasses={"homePageBanner mb-3"}>
+    <Container extraClasses={"homePageBanner my-3"}>
       <div className="h-[50vh]">
         <Slider datas={data} />
       </div>

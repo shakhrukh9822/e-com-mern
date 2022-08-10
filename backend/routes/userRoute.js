@@ -19,6 +19,7 @@ const {
   getUserFavouriteProductsList,
   deleteProductFromFavouriteList,
   setUserBanner,
+  updateUserBanner,
 } = require("../controllers/userController");
 
 const { isAuthentificatedUser, authorizeRole } = require("../middleware/auth");
@@ -48,7 +49,10 @@ router
   .route("/favourite/:id")
   .post(isAuthentificatedUser, addToFavouriteList)
   .delete(isAuthentificatedUser, deleteProductFromFavouriteList);
-router.route("/set-user-banner").post(isAuthentificatedUser, setUserBanner);
+router
+  .route("/set-user-banner")
+  .post(isAuthentificatedUser, setUserBanner)
+  .put(isAuthentificatedUser, updateUserBanner);
 
 // Admin routes==========================
 router

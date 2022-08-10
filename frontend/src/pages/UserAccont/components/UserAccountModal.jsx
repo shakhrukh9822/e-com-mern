@@ -1,28 +1,49 @@
 import React, { useState } from "react";
 import ModalWindow from "components/Modal/Modal";
 import UserAccountUploadImg from "./UserAccountUploadImg";
-import { useEntityContainerPost } from "hooks/queryHooks";
+import {
+  useEntityContainerPost,
+  useEntityContainerUpdate,
+} from "hooks/queryHooks";
 import { useActions } from "hooks/actionHooks/useActions";
 import { toast } from "react-toastify";
 import { Form } from "components/Form";
 import { Container } from "components/Container";
 import { BiImage } from "react-icons/bi";
-
 import { CgClose } from "react-icons/cg";
+import { get } from "lodash";
+import { useSelector } from "react-redux";
+import { selectAuthedUser } from "store/slices/user_authentification_slice/user.authentification.slice";
 
 const UserAccountModal = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const { userAuthentification } = useActions();
 
-  const { mutateAsync } = useEntityContainerPost({
+  const { user } = useSelector(selectAuthedUser);
+
+  const userBanner = get(user, "user_banner.url");
+
+  const { mutateAsync: setBanner } = useEntityContainerPost({
+    url: "/api/v1/set-user-banner",
+  });
+  const { mutateAsync: updateBanner } = useEntityContainerUpdate({
     url: "/api/v1/set-user-banner",
   });
 
+  console.log(userBanner);
+
   const onSubmit = async (values) => {
     try {
-      const data = await mutateAsync(values);
+      let data = {};
+
+      if (userBanner) {
+        data = await updateBanner(values);
+      } else {
+        data = await setBanner(values);
+      }
       userAuthentification(data);
+
       if (data) {
         setModalIsOpen(false);
       }

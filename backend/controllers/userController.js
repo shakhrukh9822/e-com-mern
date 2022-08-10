@@ -148,7 +148,7 @@ exports.getMyDetails = catchAsyncError(async (req, res, next) => {
   res.status(200).json({ success: true, user });
 });
 // ==========================================
-// Get user details==========================
+// Set user Banner===========================
 exports.setUserBanner = catchAsyncError(async (req, res, next) => {
   const myCloud = await cloudinary.v2.uploader.upload(req.body.user_banner, {
     folder: "user_banners",
@@ -171,6 +171,45 @@ exports.setUserBanner = catchAsyncError(async (req, res, next) => {
   });
 
   res.status(200).json({ success: true, user });
+});
+// ==========================================
+// Update user banner========================
+exports.updateUserBanner = catchAsyncError(async (req, res, next) => {
+  const user = await User.findById(req.user.id);
+
+  if (req.body.user_banner !== "") {
+    const avatarImageId = user.user_banner.public_id;
+    await cloudinary.v2.uploader.destroy(avatarImageId);
+
+    const myCloud = await cloudinary.v2.uploader.upload(
+      req.body.user_banner,
+      {
+        folder: "user_banners",
+        width: 1500,
+        crop: "scale",
+      },
+      function (err, result) {
+        console.log(err);
+      }
+    );
+
+    user.user_banner = {
+      public_id: myCloud.public_id,
+      url: myCloud.secure_url,
+    };
+  }
+
+  await User.findByIdAndUpdate(req.user.id, user, {
+    new: true,
+    runValidators: true,
+    useFindAndModify: false,
+  });
+
+  res.status(200).json({
+    success: true,
+    user,
+    message: "Banner Updated Successfuly",
+  });
 });
 // ==========================================
 // Update User Password======================

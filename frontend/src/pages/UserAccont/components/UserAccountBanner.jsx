@@ -17,7 +17,6 @@ const UserAccountBanner = ({ userBanner, userAvatar }) => {
         )}
       </div>
       <UserAccountModal />
-
       <Container extraClasses="relative -top-[115px] flex md:justify-start justify-center">
         <div className="rounded-full overflow-hidden w-[150px] h-[150px] shadow-xl drop-shadow-lg">
           <img src={userAvatar} alt="userAvatar" />
