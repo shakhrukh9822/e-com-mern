@@ -29,8 +29,6 @@ const Products = () => {
     window.scrollTo(0, 0);
   }, [currentPage]);
 
-  console.log(isFetching);
-
   return (
     <Container>
       <Helmet>

@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { get } from "lodash";
 import { Helmet } from "react-helmet-async";
 import { useParams } from "react-router-dom";
+import { useActions } from "hooks/actionHooks/useActions";
 import { useGetProductDetailQuery } from "store/slices/products_slice/products.slice";
 
 // outsider components
@@ -19,10 +20,14 @@ import SubmitReviews from "./components/SubmitReviews";
 import ProductDetailsImageThumb from "./components/ProductDetailsImageThumb";
 import ReviewCardsRow from "./components/ReviewCardsRow";
 import { ApiError } from "components/ApiError";
+import { useSelector } from "react-redux";
+import { cartItems } from "store/slices/cart_slice/cart_slice";
 
 const ProductDetails = () => {
   const { id } = useParams();
   const { data, isLoading, isError, error } = useGetProductDetailQuery(id);
+  const { addToCart, incrementQuantity, decrementQuantity } = useActions();
+  const product = get(data, "product", {});
 
   const price = get(data, "product.price", 0);
   const stock = get(data, "product.stock", 0);
@@ -35,6 +40,27 @@ const ProductDetails = () => {
   const productName = get(data, "product.name", "Product Name");
   const description = get(data, "product.description", "description");
   const productModel = get(data, "product.productModel", "Product Model");
+
+  const [productQty, setProductQty] = useState(1);
+
+  const incrementProductQty = () => {
+    setProductQty(() => productQty + 1);
+    incrementQuantity(productId);
+  };
+
+  const dicrementProductQty = () => {
+    if (productQty === 1) return;
+    setProductQty(() => productQty - 1);
+    decrementQuantity(productId);
+  };
+
+  const cardHandler = () => {
+    addToCart({ ...product });
+  };
+
+  const cart = useSelector(cartItems);
+
+  console.log(cart);
 
   return (
     <Container>
@@ -92,10 +118,15 @@ const ProductDetails = () => {
                   <div className="flex md:items-center justify-between flex-col md:flex-row mb-2">
                     <div className="flex justify-between md:w-[70%] md:pr-4 mb-3 md:mb-0">
                       <h2 className="text-[30px]">Price: {price}$</h2>
-                      <ProductStock />
+                      <ProductStock
+                        stock={stock}
+                        productQty={productQty}
+                        incrementProductQty={incrementProductQty}
+                        dicrementProductQty={dicrementProductQty}
+                      />
                     </div>
                     <div className="md:w-[30%]">
-                      <AddToCart />
+                      <AddToCart cardHandler={cardHandler} />
                     </div>
                   </div>
                   <div className="flex line-height-1 justify-between items-start mb-2">

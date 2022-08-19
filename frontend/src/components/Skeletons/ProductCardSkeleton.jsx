@@ -16,7 +16,7 @@ const ProductCardSkeleton = () => {
           <div className="h-[20px] bg-gray-200 rounded-md mb-1" />
           <div className="h-[20px] bg-gray-200 rounded-md mb-1 w-[80%]" />
           <div className="h-[20px] bg-gray-200 rounded-md mb-2 w-[80%]" />
-          <div className="h-[36px] bg-gray-200 rounded-md " />
+          <div className="h-[36px] bg-gray-200 rounded-md" />
         </div>
       </div>
     </div>

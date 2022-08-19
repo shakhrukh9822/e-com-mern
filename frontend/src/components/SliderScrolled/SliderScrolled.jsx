@@ -51,7 +51,6 @@ const SliderScrolled = ({ children, title }) => {
 };
 
 SliderScrolled.propTypes = {
-  children: PropTypes.array,
   title: PropTypes.string,
 };
 

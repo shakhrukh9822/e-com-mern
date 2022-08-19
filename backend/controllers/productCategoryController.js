@@ -33,6 +33,7 @@ exports.deleteCategory = catchAsyncError(async (req, res, next) => {
     .json({ success: true, message: "Category Deleted Successfuly" });
 });
 // ============================================
+// Update Category=============================
 exports.updateCategory = catchAsyncError(async (req, res, next) => {
   let category = await ProductCategory.findById(req.params.id);
 
@@ -49,3 +50,4 @@ exports.updateCategory = catchAsyncError(async (req, res, next) => {
     category,
   });
 });
+// ============================================

@@ -9,7 +9,7 @@ import { useActions } from "hooks/actionHooks/useActions";
 import { toast } from "react-toastify";
 import { Form } from "components/Form";
 import { Container } from "components/Container";
-import { BiImage } from "react-icons/bi";
+import { FcAddImage, FcEditImage } from "react-icons/fc";
 import { CgClose } from "react-icons/cg";
 import { get } from "lodash";
 import { useSelector } from "react-redux";
@@ -81,9 +81,9 @@ const UserAccountModal = () => {
         openButton={
           <button
             onClick={() => setModalIsOpen(true)}
-            className="border-gray-900 p-2 rounded-full text-white bg-gray-900"
+            className=" shadow-2xl drop-shadow-xl border border-gray-300 p-3 rounded-full text-white bg-slate-200"
           >
-            <BiImage size={26} />
+            {userBanner ? <FcEditImage size={30} /> : <FcAddImage size={30} />}
           </button>
         }
       >
@@ -105,6 +105,7 @@ const UserAccountModal = () => {
                 <UserAccountUploadImg
                   setFieldValue={setFieldValue}
                   inputName={"user_banner"}
+                  userBanner={userBanner}
                 />
               </>
             );

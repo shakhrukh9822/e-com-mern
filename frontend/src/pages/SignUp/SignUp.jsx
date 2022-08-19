@@ -23,7 +23,7 @@ import { Authentificated } from "components/Authentificated";
 const SignUp = () => {
   const navigate = useNavigate();
   const { userAuthentification } = useActions();
-  const { mutateAsync, isLoading } = useEntityContainerPost({
+  const { mutateAsync, isLoading ,} = useEntityContainerPost({
     url: "/api/v1/registration",
   });
 
